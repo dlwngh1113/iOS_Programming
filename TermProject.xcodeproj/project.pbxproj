@@ -10,9 +10,10 @@
 		A14C5A60264EC5890074C936 /* LeisureTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14C5A5F264EC5890074C936 /* LeisureTableViewController.swift */; };
 		A14C5A62264EC59A0074C936 /* AreaTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14C5A61264EC59A0074C936 /* AreaTableViewController.swift */; };
 		A14C5A64264EC5AA0074C936 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14C5A63264EC5AA0074C936 /* WeatherViewController.swift */; };
+		A14C5A66264ED02A0074C936 /* InitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14C5A65264ED02A0074C936 /* InitViewController.swift */; };
 		A1C2E6602637FB5D00972E6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C2E65F2637FB5D00972E6E /* AppDelegate.swift */; };
 		A1C2E6622637FB5D00972E6E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C2E6612637FB5D00972E6E /* SceneDelegate.swift */; };
-		A1C2E6642637FB5D00972E6E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C2E6632637FB5D00972E6E /* ViewController.swift */; };
+		A1C2E6642637FB5D00972E6E /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C2E6632637FB5D00972E6E /* PickerViewController.swift */; };
 		A1C2E6672637FB5D00972E6E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1C2E6652637FB5D00972E6E /* Main.storyboard */; };
 		A1C2E6692637FB5E00972E6E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1C2E6682637FB5E00972E6E /* Assets.xcassets */; };
 		A1C2E66C2637FB5E00972E6E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1C2E66A2637FB5E00972E6E /* LaunchScreen.storyboard */; };
@@ -22,10 +23,11 @@
 		A14C5A5F264EC5890074C936 /* LeisureTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeisureTableViewController.swift; sourceTree = "<group>"; };
 		A14C5A61264EC59A0074C936 /* AreaTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaTableViewController.swift; sourceTree = "<group>"; };
 		A14C5A63264EC5AA0074C936 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
+		A14C5A65264ED02A0074C936 /* InitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitViewController.swift; sourceTree = "<group>"; };
 		A1C2E65C2637FB5D00972E6E /* TermProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TermProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1C2E65F2637FB5D00972E6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1C2E6612637FB5D00972E6E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A1C2E6632637FB5D00972E6E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A1C2E6632637FB5D00972E6E /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
 		A1C2E6662637FB5D00972E6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A1C2E6682637FB5E00972E6E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A1C2E66B2637FB5E00972E6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -43,6 +45,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A14C5A67264ED0320074C936 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				A14C5A65264ED02A0074C936 /* InitViewController.swift */,
+				A1C2E6632637FB5D00972E6E /* PickerViewController.swift */,
+				A14C5A5F264EC5890074C936 /* LeisureTableViewController.swift */,
+				A14C5A61264EC59A0074C936 /* AreaTableViewController.swift */,
+				A14C5A63264EC5AA0074C936 /* WeatherViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 		A1C2E6532637FB5D00972E6E = {
 			isa = PBXGroup;
 			children = (
@@ -64,14 +78,11 @@
 			children = (
 				A1C2E65F2637FB5D00972E6E /* AppDelegate.swift */,
 				A1C2E6612637FB5D00972E6E /* SceneDelegate.swift */,
-				A1C2E6632637FB5D00972E6E /* ViewController.swift */,
 				A1C2E6652637FB5D00972E6E /* Main.storyboard */,
 				A1C2E6682637FB5E00972E6E /* Assets.xcassets */,
 				A1C2E66A2637FB5E00972E6E /* LaunchScreen.storyboard */,
 				A1C2E66D2637FB5E00972E6E /* Info.plist */,
-				A14C5A5F264EC5890074C936 /* LeisureTableViewController.swift */,
-				A14C5A61264EC59A0074C936 /* AreaTableViewController.swift */,
-				A14C5A63264EC5AA0074C936 /* WeatherViewController.swift */,
+				A14C5A67264ED0320074C936 /* ViewControllers */,
 			);
 			path = TermProject;
 			sourceTree = "<group>";
@@ -147,8 +158,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A14C5A62264EC59A0074C936 /* AreaTableViewController.swift in Sources */,
+				A14C5A66264ED02A0074C936 /* InitViewController.swift in Sources */,
 				A14C5A64264EC5AA0074C936 /* WeatherViewController.swift in Sources */,
-				A1C2E6642637FB5D00972E6E /* ViewController.swift in Sources */,
+				A1C2E6642637FB5D00972E6E /* PickerViewController.swift in Sources */,
 				A1C2E6602637FB5D00972E6E /* AppDelegate.swift in Sources */,
 				A14C5A60264EC5890074C936 /* LeisureTableViewController.swift in Sources */,
 				A1C2E6622637FB5D00972E6E /* SceneDelegate.swift in Sources */,

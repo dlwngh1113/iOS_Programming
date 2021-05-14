@@ -9,12 +9,13 @@ import UIKit
 import AVFAudio
 import Speech
 
-class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
+    
+    @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var transcribeButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var myTextView: UITextView!
-    @IBOutlet weak var pickerView: UIPickerView!
     private let audioEngine = AVAudioEngine()
     
     private let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "ko-KR"))!

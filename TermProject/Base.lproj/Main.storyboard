@@ -11,13 +11,13 @@
         <!--Select sgg Scene-->
         <scene sceneID="gxb-De-ONZ">
             <objects>
-                <viewController title="Select sgg Scene" id="G5R-SX-vYl" sceneMemberID="viewController">
+                <viewController title="Select sgg Scene" id="G5R-SX-vYl" customClass="PickerViewController" customModule="TermProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wE8-YK-3Ow">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fpo-ob-8cq">
-                                <rect key="frame" x="0.0" y="94" width="414" height="200"/>
+                                <rect key="frame" x="0.0" y="50" width="414" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="AC0-z5-Rny"/>
                                 </constraints>
@@ -28,6 +28,9 @@
                                 <state key="normal" title="음성 인식 시작">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="startTranscribing:" destination="G5R-SX-vYl" eventType="touchUpInside" id="gy3-Eq-3cS"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wQj-2t-fnq">
                                 <rect key="frame" x="290" y="406" width="86" height="30"/>
@@ -35,6 +38,9 @@
                                 <state key="normal" title="음성 인식 종료">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="stopTranscribing:" destination="G5R-SX-vYl" eventType="touchUpInside" id="cSo-yd-kcz"/>
+                                </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="b0U-UV-YFo">
                                 <rect key="frame" x="0.0" y="460" width="414" height="330"/>
@@ -70,6 +76,12 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="C72-QE-gb7"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="myTextView" destination="b0U-UV-YFo" id="xAA-5z-yGU"/>
+                        <outlet property="pickerView" destination="fpo-ob-8cq" id="uZx-Hk-fjt"/>
+                        <outlet property="stopButton" destination="wQj-2t-fnq" id="vxU-Gf-HQU"/>
+                        <outlet property="transcribeButton" destination="03P-MN-4aA" id="xc8-8O-pQC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TEv-FX-wsB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -80,7 +92,7 @@
             <objects>
                 <viewController title="Weather Scene" id="YZ0-jF-bsG" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="t4d-5C-e7z">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="nEv-l6-Zdb"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -96,7 +108,7 @@
             <objects>
                 <viewController title="Leisure Scene" id="kiJ-2K-nOm" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="F02-2G-sai">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="wzP-95-N4c"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -132,7 +144,7 @@
             <objects>
                 <viewController title="Area Scene" id="IdA-Cu-Sxc" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="83b-t1-nAL">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="fLK-gF-897"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -159,6 +171,9 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <segue destination="G5R-SX-vYl" kind="show" identifier="segueToPickerView" id="BlI-5A-CZc"/>
+                                </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YMb-al-7BE">
                                 <rect key="frame" x="10" y="50" width="394" height="550"/>
