@@ -260,6 +260,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="레저 정보" id="oZX-TY-Iz7"/>
+                    <connections>
+                        <outlet property="leisureTableView" destination="vbW-GA-0qG" id="2SD-Lc-nB9"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zlf-Zw-L72" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
