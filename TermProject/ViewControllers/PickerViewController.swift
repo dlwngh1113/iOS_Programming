@@ -88,25 +88,13 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             stopButton.isEnabled = false
         }
         
-        switch self.myTextView.text {
-        case "광진구":
-            self.pickerView.selectRow(0, inComponent: 0, animated: true)
-            sgguCd = "110023"
-            break
-        case "구로구":
-            self.pickerView.selectRow(1, inComponent: 0, animated: true)
-            sgguCd = "110005"
-            break
-        case "동대문구":
-            self.pickerView.selectRow(2, inComponent: 0, animated: true)
-            sgguCd = "110007"
-            break
-        case "종로구":
-            self.pickerView.selectRow(3, inComponent: 0, animated: true)
-            sgguCd = "110016"
-            break
-        default:
-            break
+        for i in 0..<pickerDataSource.count
+        {
+            if(self.myTextView.text == pickerDataSource[i])
+            {
+                self.pickerView.selectRow(i, inComponent: 0, animated: true)
+                break
+            }
         }
     }
     
