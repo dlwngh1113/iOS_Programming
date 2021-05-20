@@ -10,5 +10,9 @@ import Foundation
 class Leisure
 {
     var name: String?
-    var
+    var sggName: String?
+    var addr: String?
+    var phone: String?
+    var xPos: String?
+    var yPos: String?
 }
