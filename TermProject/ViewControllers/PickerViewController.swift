@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import AVFAudio
 import Speech
 
 class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
