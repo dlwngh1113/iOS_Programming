@@ -17,6 +17,7 @@
 		A1C2E6672637FB5D00972E6E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1C2E6652637FB5D00972E6E /* Main.storyboard */; };
 		A1C2E6692637FB5E00972E6E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1C2E6682637FB5E00972E6E /* Assets.xcassets */; };
 		A1C2E66C2637FB5E00972E6E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1C2E66A2637FB5E00972E6E /* LaunchScreen.storyboard */; };
+		A1F08D1A2657B0A800FDCF55 /* GlawTapBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F08D192657B0A800FDCF55 /* GlawTapBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		A1C2E6682637FB5E00972E6E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A1C2E66B2637FB5E00972E6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A1C2E66D2637FB5E00972E6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A1F08D192657B0A800FDCF55 /* GlawTapBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlawTapBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +52,7 @@
 			children = (
 				A180F6302653525800CFD0B5 /* InitViewController.swift */,
 				A1C2E6632637FB5D00972E6E /* PickerViewController.swift */,
+				A1F08D192657B0A800FDCF55 /* GlawTapBarController.swift */,
 				A180F63426536C1300CFD0B5 /* LeisureTableViewController.swift */,
 				A180F63626536C7D00CFD0B5 /* AreaTableViewController.swift */,
 			);
@@ -171,6 +174,7 @@
 				A1C2E6602637FB5D00972E6E /* AppDelegate.swift in Sources */,
 				A180F63526536C1300CFD0B5 /* LeisureTableViewController.swift in Sources */,
 				A180F639265372E200CFD0B5 /* Leisure.swift in Sources */,
+				A1F08D1A2657B0A800FDCF55 /* GlawTapBarController.swift in Sources */,
 				A1C2E6622637FB5D00972E6E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

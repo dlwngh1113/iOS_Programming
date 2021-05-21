@@ -22,9 +22,13 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     var pickerDataSource = ["수원시", "용인시", "성남시", "부천시", "화성시", "안산시", "안양시", "평택시", "시흥시", "김포시",
     "광주시", "광명시", "군포시", "하남시", "오산시", "이천시", "안성시", "의왕시", "양평군", "여주시", "과천시", "고양시", "남양주시", "파주시", "의정부시", "양주시", "구리시", "포천시", "동두천시", "가평군", "연천군"]
-    var url : String = "http://apis.data.go.kr/B551182/hospInfoService/getHospBasisList?pageNo=1&numOfRows=10&serviceKey=sea100UMmw23Xycs33F1EQnumONR%2F9ElxBLzkilU9Yr1oT4TrCot8Y2p0jyuJP72x9rG9D8CN5yuEs6AS2sAiw%3D%3D&sidoCd=110000&sgguCd="
-    var sgguCd: String = "110023"
+    //var url : String = "http://apis.data.go.kr/B551182/hospInfoService/getHospBasisList?pageNo=1&numOfRows=10&serviceKey=sea100UMmw23Xycs33F1EQnumONR%2F9ElxBLzkilU9Yr1oT4TrCot8Y2p0jyuJP72x9rG9D8CN5yuEs6AS2sAiw%3D%3D&sidoCd=110000&sgguCd="
+    //var sgguCd: String = "110023"
 
+    //지은 인증키: KEY=2d29e4b557924fc2b87524d5cda7e8e1
+    var Leisureurl : String = "https://openapi.gg.go.kr/LSST?KEY=2d29e4b557924fc2b87524d5cda7e8e1&Type=xml&pIndex=1&pSize=400"
+    var sgguCd : String = "수원시"
+    
     @IBAction func startTranscribing(_ sender: Any) {
         transcribeButton.isEnabled = false
         stopButton.isEnabled = true
@@ -93,6 +97,9 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
                 break
             }
         }
+        
+        //지역명
+        sgguCd = self.myTextView.text
     }
     
     @IBAction func doneToPickerViewContorller(segue: UIStoryboardSegue)
@@ -100,14 +107,12 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "segueToTableViews"
+        if segue.identifier == "SegueToTapBar"
         {
-            if let leisureController = segue.destination as? UINavigationController
+            if let leisureController = segue.destination as? GlawTapBarController
             {
-                if let leisureTableViewContorller = leisureController.topViewController as? LeisureTableViewController
-                {
-                    
-                }
+                leisureController.leisureURL = Leisureurl
+                leisureController.sgguCd = sgguCd
             }
         }
     }
@@ -153,22 +158,9 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         return pickerDataSource[row]
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component:Int)  {
-        if row == 0
-        {
-            sgguCd = "110023"
-        }
-        else if row == 1
-        {
-            sgguCd = "110005"
-        }
-        else if row == 2
-        {
-            sgguCd = "110007"
-        }
-        else
-        {
-            sgguCd = "110016"
-        }
+        
+        //지역명 저장
+        sgguCd = pickerDataSource[row]
     }
 }
 
