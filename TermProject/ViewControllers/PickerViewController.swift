@@ -9,8 +9,6 @@ import UIKit
 import Speech
 
 class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-    
-    
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var transcribeButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
