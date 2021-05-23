@@ -27,6 +27,8 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 
     //지은 인증키: KEY=2d29e4b557924fc2b87524d5cda7e8e1
     var Leisureurl : String = "https://openapi.gg.go.kr/LSST?KEY=2d29e4b557924fc2b87524d5cda7e8e1&Type=xml&pIndex=1&pSize=400"
+    var Areaurl: String =
+        "https://openapi.gg.go.kr/ADST?KEY=2d29e4b557924fc2b87524d5cda7e8e1&Type=xml&pIndex=1&pSize=400"
     var sgguCd : String = "수원시"
     
     @IBAction func startTranscribing(_ sender: Any) {
@@ -109,10 +111,11 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SegueToTapBar"
         {
-            if let leisureController = segue.destination as? GlawTapBarController
+            if let tabBarController = segue.destination as? GlawTapBarController
             {
-                leisureController.leisureURL = Leisureurl
-                leisureController.sgguCd = sgguCd
+                tabBarController.leisureURL = Leisureurl
+                tabBarController.areaURL = Areaurl
+                tabBarController.sgguCd = sgguCd
             }
         }
     }

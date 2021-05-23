@@ -15,13 +15,26 @@ class GlawTapBarController: UITabBarController {
     var sgguCd: String?
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        loadData()
+    }
+    
+    func loadData()
+    {
         if let navController = self.customizableViewControllers![0] as? UINavigationController
         {
-            if let tabBarController = navController.topViewController as? LeisureTableViewController
+            if let leisureViewController = navController.topViewController as? LeisureTableViewController
             {
-                tabBarController.url = leisureURL
-                tabBarController.sgguCd = sgguCd
+                leisureViewController.url = leisureURL
+                leisureViewController.sgguCd = sgguCd
+            }
+        }
+        
+        if let navController = self.customizableViewControllers![1] as? UINavigationController
+        {
+            if let areaViewController = navController.topViewController as? AreaTableViewController
+            {
+                areaViewController.url = areaURL
+                areaViewController.sgguCd = sgguCd
             }
         }
     }

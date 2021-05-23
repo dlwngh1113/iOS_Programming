@@ -29,9 +29,6 @@ class LeisureTableViewController: UITableViewController, XMLParserDelegate {
     var XPos = NSMutableString() //위도
     var YPos = NSMutableString() //경도
     
-    var Leisurename = ""
-    var Leisurename_utf8 = ""
-    
     func beginParsing()
     {
         posts = []
