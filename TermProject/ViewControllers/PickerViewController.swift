@@ -29,6 +29,8 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     var Leisureurl : String = "https://openapi.gg.go.kr/LSST?KEY=2d29e4b557924fc2b87524d5cda7e8e1&Type=xml&pIndex=1&pSize=400"
     var Areaurl: String =
         "https://openapi.gg.go.kr/ADST?KEY=2d29e4b557924fc2b87524d5cda7e8e1&Type=xml&pIndex=1&pSize=400"
+    var Weatherurl: String = "http://apis.data.go.kr/1360000/VilageFcstInfoService/getVilageFcst?serviceKey=PTNHS9f8boh318RYHDRggM/cSK1e1+0dxXum6wmSa1drIBilH68BBlwXvG0rry8zn0k7HzQU4JPJGvIRPZlVqw==&numOfRows=3&pageNo=1&dataType=XML&base_time=1400"
+    
     var sgguCd : String = "수원시"
     
     @IBAction func startTranscribing(_ sender: Any) {
@@ -115,6 +117,7 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             {
                 tabBarController.leisureURL = Leisureurl
                 tabBarController.areaURL = Areaurl
+                tabBarController.weatherUIL = Weatherurl
                 tabBarController.sgguCd = sgguCd
             }
         }

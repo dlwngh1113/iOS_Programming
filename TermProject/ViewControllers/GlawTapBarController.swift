@@ -37,6 +37,15 @@ class GlawTapBarController: UITabBarController {
                 areaViewController.sgguCd = sgguCd
             }
         }
+        
+        if let navController = self.customizableViewControllers![2] as? UINavigationController
+        {
+            if let weatherViewController = navController.topViewController as? WeatherTableViewController
+            {
+                weatherViewController.url = weatherUIL
+                weatherViewController.sgguCd = sgguCd
+            }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

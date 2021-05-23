@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A13DCE17265A6CF700990837 /* WeatherTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13DCE16265A6CF700990837 /* WeatherTableViewController.swift */; };
 		A180F6312653525800CFD0B5 /* InitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A180F6302653525800CFD0B5 /* InitViewController.swift */; };
 		A180F63526536C1300CFD0B5 /* LeisureTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A180F63426536C1300CFD0B5 /* LeisureTableViewController.swift */; };
 		A180F63726536C7D00CFD0B5 /* AreaTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A180F63626536C7D00CFD0B5 /* AreaTableViewController.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A13DCE16265A6CF700990837 /* WeatherTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTableViewController.swift; sourceTree = "<group>"; };
 		A180F6302653525800CFD0B5 /* InitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitViewController.swift; sourceTree = "<group>"; };
 		A180F63426536C1300CFD0B5 /* LeisureTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeisureTableViewController.swift; sourceTree = "<group>"; };
 		A180F63626536C7D00CFD0B5 /* AreaTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaTableViewController.swift; sourceTree = "<group>"; };
@@ -55,6 +57,7 @@
 				A1F08D192657B0A800FDCF55 /* GlawTapBarController.swift */,
 				A180F63426536C1300CFD0B5 /* LeisureTableViewController.swift */,
 				A180F63626536C7D00CFD0B5 /* AreaTableViewController.swift */,
+				A13DCE16265A6CF700990837 /* WeatherTableViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -169,6 +172,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A180F6312653525800CFD0B5 /* InitViewController.swift in Sources */,
+				A13DCE17265A6CF700990837 /* WeatherTableViewController.swift in Sources */,
 				A1C2E6642637FB5D00972E6E /* PickerViewController.swift in Sources */,
 				A180F63726536C7D00CFD0B5 /* AreaTableViewController.swift in Sources */,
 				A1C2E6602637FB5D00972E6E /* AppDelegate.swift in Sources */,
