@@ -22,7 +22,7 @@ class WeatherTableViewController: UITableViewController, XMLParserDelegate {
     var element = NSString()
     
     //var time: String? = "&base_time=1400" //예보시간 - 고정
-    var date: String? = "&base_date=20210523" //예보날짜
+    var date: String? = "&base_date=" //예보날짜
     var position: String? //지역의 xy
     
     func initAreaPosition()
@@ -137,8 +137,19 @@ class WeatherTableViewController: UITableViewController, XMLParserDelegate {
         weatherTableView!.reloadData()
     }
     
+    func getDate()
+    {
+        let today = NSDate()
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateFormat = "yyyyMMdd"
+        let date = dateFormatter.string(from: today as Date)
+        self.date! += date
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        getDate()
         beginParsing()
     }
 
