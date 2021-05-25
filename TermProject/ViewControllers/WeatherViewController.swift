@@ -30,81 +30,81 @@ class WeatherViewController: UIViewController, XMLParserDelegate {
         {
             elements = NSMutableDictionary()
             elements = [:]
-            SIGUN_NM = NSMutableString()
-            SIGUN_NM = ""
-            NM_SM_NM = NSMutableString()
-            NM_SM_NM = ""
-            SM_RE_ADDR = NSMutableString()
-            SM_RE_ADDR = ""
-            TELNO = NSMutableString()
-            TELNO = ""
-            //
-            XPos = NSMutableString()
-            XPos = ""
-            YPos = NSMutableString()
-            YPos = ""
+//            SIGUN_NM = NSMutableString()
+//            SIGUN_NM = ""
+//            NM_SM_NM = NSMutableString()
+//            NM_SM_NM = ""
+//            SM_RE_ADDR = NSMutableString()
+//            SM_RE_ADDR = ""
+//            TELNO = NSMutableString()
+//            TELNO = ""
+//            //
+//            XPos = NSMutableString()
+//            XPos = ""
+//            YPos = NSMutableString()
+//            YPos = ""
         }
     }
     func parser(_ parser: XMLParser, foundCharacters string: String)
     {
         if element.isEqual(to: "SIGUN_NM")
         {
-            SIGUN_NM.append(string)
+           // SIGUN_NM.append(string)
         }
         else if element.isEqual(to: "NM_SM_NM")
         {
-            NM_SM_NM.append(string)
+           // NM_SM_NM.append(string)
         }
         else if element.isEqual(to: "SM_RE_ADDR")
         {
-            SM_RE_ADDR.append(string)
+           // SM_RE_ADDR.append(string)
         }
         else if element.isEqual(to: "TELNO")
         {
-            TELNO.append(string)
+            //TELNO.append(string)
         }
         
         else if element.isEqual(to: "REFINE_WGS84_LAT")
         {
-            XPos.append(string)
+            //XPos.append(string)
         }
         else if element.isEqual(to: "REFINE_WGS84_LOGT")
         {
-            YPos.append(string)
+            //YPos.append(string)
         }
     }
     func parser(_ parser:XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?)
     {
         if (elementName as NSString).isEqual(to: "row")
         {
-            if !SIGUN_NM.isEqual(nil)
-            {
-                if(!SIGUN_NM.contains(sgguCd!)){
-                    return
-                }
-                elements.setObject(SIGUN_NM, forKey: "SIGUN_NM" as NSCopying)
-            }
-            if !NM_SM_NM.isEqual(nil)
-            {
-                elements.setObject(NM_SM_NM, forKey: "NM_SM_NM" as NSCopying)
-            }
-            if !SM_RE_ADDR.isEqual(nil)
-            {
-                elements.setObject(SM_RE_ADDR, forKey: "SM_RE_ADDR" as NSCopying)
-            }
-            if !TELNO.isEqual(nil)
-            {
-                elements.setObject(TELNO, forKey: "TELNO" as NSCopying)
-            }
-            
-            if !XPos.isEqual(nil)
-            {
-                elements.setObject(XPos, forKey: "REFINE_WGS84_LAT" as NSCopying)
-            }
-            if !YPos.isEqual(nil)
-            {
-                elements.setObject(YPos, forKey: "REFINE_WGS84_LOGT" as NSCopying)
-            }
+//            if !SIGUN_NM.isEqual(nil)
+//            {
+//                if(!SIGUN_NM.contains(sgguCd!)){
+//                    return
+//                }
+//                elements.setObject(SIGUN_NM, forKey: "SIGUN_NM" as NSCopying)
+//            }
+//            if !NM_SM_NM.isEqual(nil)
+//            {
+//                elements.setObject(NM_SM_NM, forKey: "NM_SM_NM" as NSCopying)
+//            }
+//            if !SM_RE_ADDR.isEqual(nil)
+//            {
+//                elements.setObject(SM_RE_ADDR, forKey: "SM_RE_ADDR" as NSCopying)
+//            }
+//            if !TELNO.isEqual(nil)
+//            {
+//                elements.setObject(TELNO, forKey: "TELNO" as NSCopying)
+//            }
+//
+//            if !XPos.isEqual(nil)
+//            {
+//                elements.setObject(XPos, forKey: "REFINE_WGS84_LAT" as NSCopying)
+//            }
+//            if !YPos.isEqual(nil)
+//            {
+//                elements.setObject(YPos, forKey: "REFINE_WGS84_LOGT" as NSCopying)
+//            }
             
             posts.add(elements)
         }

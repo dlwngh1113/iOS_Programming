@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A114419D265CF4170067A60E /* LeisureDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A114419C265CF4170067A60E /* LeisureDetailViewController.swift */; };
+		A11441A0265CF4250067A60E /* AreaDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A114419F265CF4250067A60E /* AreaDetailViewController.swift */; };
 		A13DCE17265A6CF700990837 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13DCE16265A6CF700990837 /* WeatherViewController.swift */; };
 		A180F6312653525800CFD0B5 /* InitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A180F6302653525800CFD0B5 /* InitViewController.swift */; };
 		A180F63526536C1300CFD0B5 /* LeisureTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A180F63426536C1300CFD0B5 /* LeisureTableViewController.swift */; };
@@ -22,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A114419C265CF4170067A60E /* LeisureDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeisureDetailViewController.swift; sourceTree = "<group>"; };
+		A114419F265CF4250067A60E /* AreaDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaDetailViewController.swift; sourceTree = "<group>"; };
 		A13DCE16265A6CF700990837 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		A180F6302653525800CFD0B5 /* InitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitViewController.swift; sourceTree = "<group>"; };
 		A180F63426536C1300CFD0B5 /* LeisureTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeisureTableViewController.swift; sourceTree = "<group>"; };
@@ -49,9 +53,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A114419A265CF3BA0067A60E /* DetailView */ = {
+			isa = PBXGroup;
+			children = (
+				A114419C265CF4170067A60E /* LeisureDetailViewController.swift */,
+				A114419F265CF4250067A60E /* AreaDetailViewController.swift */,
+			);
+			path = DetailView;
+			sourceTree = "<group>";
+		};
 		A14C5A67264ED0320074C936 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				A114419A265CF3BA0067A60E /* DetailView */,
 				A180F6302653525800CFD0B5 /* InitViewController.swift */,
 				A1C2E6632637FB5D00972E6E /* PickerViewController.swift */,
 				A1F08D192657B0A800FDCF55 /* GlawTapBarController.swift */,
@@ -176,7 +190,9 @@
 				A1C2E6642637FB5D00972E6E /* PickerViewController.swift in Sources */,
 				A180F63726536C7D00CFD0B5 /* AreaTableViewController.swift in Sources */,
 				A1C2E6602637FB5D00972E6E /* AppDelegate.swift in Sources */,
+				A114419D265CF4170067A60E /* LeisureDetailViewController.swift in Sources */,
 				A180F63526536C1300CFD0B5 /* LeisureTableViewController.swift in Sources */,
+				A11441A0265CF4250067A60E /* AreaDetailViewController.swift in Sources */,
 				A180F639265372E200CFD0B5 /* Leisure.swift in Sources */,
 				A1F08D1A2657B0A800FDCF55 /* GlawTapBarController.swift in Sources */,
 				A1C2E6622637FB5D00972E6E /* SceneDelegate.swift in Sources */,

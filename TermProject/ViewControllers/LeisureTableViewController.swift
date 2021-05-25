@@ -148,4 +148,13 @@ class LeisureTableViewController: UITableViewController, XMLParserDelegate {
 
         return cell
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueToLeisureDetail"{
+            if let mapViewController = segue.destination as? LeisureDetailViewController{
+                mapViewController.posts = posts
+            }
+        }
+        
+    }
 }
