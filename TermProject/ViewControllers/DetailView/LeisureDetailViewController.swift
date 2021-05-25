@@ -29,8 +29,8 @@ class LeisureDetailViewController: UIViewController, MKMapViewDelegate{
             leisureNameLabel.text = (post as AnyObject).value(forKey: "SI_DESC") as! NSString as String
             telephoneLabel.text = (post as AnyObject).value(forKey: "TELNO") as! NSString as String
             detailAddressLabel.text = (post as AnyObject).value(forKey: "SM_RE_ADDR") as! NSString as String
-            let XPos = (post as AnyObject).value(forKey: "REFINE_WGS84_LAT") as! NSString as String
-            let YPos = (post as AnyObject).value(forKey: "REFINE_WGS84_LOGT") as! NSString as String
+            let YPos = (post as AnyObject).value(forKey: "REFINE_WGS84_LAT") as! NSString as String
+            let XPos = (post as AnyObject).value(forKey: "REFINE_WGS84_LOGT") as! NSString as String
             lat = (YPos as NSString).doubleValue
             lon = (XPos as NSString).doubleValue
         }
@@ -65,7 +65,7 @@ class LeisureDetailViewController: UIViewController, MKMapViewDelegate{
         map.delegate = self
         initloaddate()
         
-        let initialLocation = CLLocation(latitude: 37.5384514, longitude: 127.0709764)
+        let initialLocation = CLLocation(latitude: lat, longitude: lon)
         centerMapOnLocation(location: initialLocation)
         // 핀설정
         pinSetting()
