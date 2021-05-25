@@ -20,90 +20,82 @@ class WeatherViewController: UIViewController, XMLParserDelegate {
     var elements = NSMutableDictionary()
     var element = NSString()
     
-    //var time: String? = "&base_time=1400" //예보시간 - 고정
+    var category = NSMutableString()
+    var categoryValue = NSMutableString()
+    var fcstTime = NSMutableString()
+    
     var date: String? = "&base_date=" //예보날짜
     var position: String? //지역의 xy
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI :String?,
                 qualifiedName qName: String?, attributes attributeDict: [String: String]) {
         element = elementName as NSString
-        if (elementName as NSString).isEqual(to: "row")
+        if (elementName as NSString).isEqual(to: "item")
         {
             elements = NSMutableDictionary()
             elements = [:]
-            SIGUN_NM = NSMutableString()
-            SIGUN_NM = ""
-            NM_SM_NM = NSMutableString()
-            NM_SM_NM = ""
-            SM_RE_ADDR = NSMutableString()
-            SM_RE_ADDR = ""
-            TELNO = NSMutableString()
-            TELNO = ""
-            //
-            XPos = NSMutableString()
-            XPos = ""
-            YPos = NSMutableString()
-            YPos = ""
+            
+            category = NSMutableString()
+            category = ""
+            
+            categoryValue = NSMutableString()
+            categoryValue = ""
+            
+            fcstTime = NSMutableString()
+            fcstTime = ""
         }
     }
     func parser(_ parser: XMLParser, foundCharacters string: String)
     {
-        if element.isEqual(to: "SIGUN_NM")
+        if element.isEqual(to: "fcstTime")
         {
-            SIGUN_NM.append(string)
+            if(string.contains("1500"))
+            {
+                fcstTime.append(string)
+            }
+            else
+            {
+                //fcstTime = nil
+            }
         }
-        else if element.isEqual(to: "NM_SM_NM")
+        else if element.isEqual(to: "category")
         {
-            NM_SM_NM.append(string)
+            if(string.contains("POP"))
+            {
+                category.append(string)
+            }
+            else if(string.contains("SKY"))
+            {
+                category.append(string)
+            }
+            else if(string.contains("TMX"))
+            {
+                category.append(string)
+            }
+            else
+            {
+                return
+            }
         }
-        else if element.isEqual(to: "SM_RE_ADDR")
+        else if element.isEqual(to: "fcstValue")
         {
-            SM_RE_ADDR.append(string)
-        }
-        else if element.isEqual(to: "TELNO")
-        {
-            TELNO.append(string)
-        }
-        
-        else if element.isEqual(to: "REFINE_WGS84_LAT")
-        {
-            XPos.append(string)
-        }
-        else if element.isEqual(to: "REFINE_WGS84_LOGT")
-        {
-            YPos.append(string)
+            categoryValue.append(string)
         }
     }
     func parser(_ parser:XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?)
     {
-        if (elementName as NSString).isEqual(to: "row")
+        if (elementName as NSString).isEqual(to: "item")
         {
-            if !SIGUN_NM.isEqual(nil)
+            if !fcstTime.isEqual(nil)
             {
-                if(!SIGUN_NM.contains(sgguCd!)){
-                    return
-                }
-                elements.setObject(SIGUN_NM, forKey: "SIGUN_NM" as NSCopying)
+                elements.setObject(fcstTime, forKey: "fcstTime" as NSCopying)
             }
-            if !NM_SM_NM.isEqual(nil)
+            if !category.isEqual(nil)
             {
-                elements.setObject(NM_SM_NM, forKey: "NM_SM_NM" as NSCopying)
+                elements.setObject(category, forKey: "category" as NSCopying)
             }
-            if !SM_RE_ADDR.isEqual(nil)
+            if !categoryValue.isEqual(nil)
             {
-                elements.setObject(SM_RE_ADDR, forKey: "SM_RE_ADDR" as NSCopying)
-            }
-            if !TELNO.isEqual(nil)
-            {
-                elements.setObject(TELNO, forKey: "TELNO" as NSCopying)
-            }
-            
-            if !XPos.isEqual(nil)
-            {
-                elements.setObject(XPos, forKey: "REFINE_WGS84_LAT" as NSCopying)
-            }
-            if !YPos.isEqual(nil)
-            {
-                elements.setObject(YPos, forKey: "REFINE_WGS84_LOGT" as NSCopying)
+                elements.setObject(categoryValue, forKey: "fcstValue" as NSCopying)
             }
             
             posts.add(elements)
@@ -134,6 +126,7 @@ class WeatherViewController: UIViewController, XMLParserDelegate {
         super.viewDidLoad()
         getDate()
         beginParsing()
+        print(posts)
     }
     
     func initAreaPosition()

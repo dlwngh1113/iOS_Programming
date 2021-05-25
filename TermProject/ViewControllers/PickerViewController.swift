@@ -30,7 +30,7 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     var Leisureurl : String = "https://openapi.gg.go.kr/LSST?KEY=2d29e4b557924fc2b87524d5cda7e8e1&Type=xml&pIndex=1&pSize=400"
     var Areaurl: String =
         "https://openapi.gg.go.kr/ADST?KEY=2d29e4b557924fc2b87524d5cda7e8e1&Type=xml&pIndex=1&pSize=400"
-    var Weatherurl: String = "http://apis.data.go.kr/1360000/VilageFcstInfoService/getVilageFcst?%2BhwV8qFUEuPQ4dUWbntMWjJi8Lcj5FEdExdT0MZcwPj53cQwNSnBvCeTAerZbJ8NCzNzmHxZrUZXtZzBZ72aag%3D%3D&numOfRows=3&pageNo=1&dataType=XML&base_time=0500"
+    var Weatherurl: String = "http://apis.data.go.kr/1360000/VilageFcstInfoService/getVilageFcst?ServiceKey=%2BhwV8qFUEuPQ4dUWbntMWjJi8Lcj5FEdExdT0MZcwPj53cQwNSnBvCeTAerZbJ8NCzNzmHxZrUZXtZzBZ72aag%3D%3D&numOfRows=50&base_time=0500"
     
     var sgguCd : String = "수원시"
     
