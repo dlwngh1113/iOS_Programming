@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kaS-bt-7Rv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kaS-bt-7Rv">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -102,7 +102,7 @@
                     <connections>
                         <segue destination="Inz-GX-vvV" kind="relationship" relationship="viewControllers" id="cBA-q6-C29"/>
                         <segue destination="g2j-kx-V9A" kind="relationship" relationship="viewControllers" id="uuc-DI-kpc"/>
-                        <segue destination="O7m-N6-4QH" kind="relationship" relationship="viewControllers" id="N1M-NV-Rw6"/>
+                        <segue destination="3Yi-mI-drT" kind="relationship" relationship="viewControllers" id="n5N-pL-C66"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ciA-wm-4j9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -185,10 +185,10 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="AreaCell" textLabel="Db9-yT-Lc8" detailTextLabel="glN-Sf-aai" style="IBUITableViewCellStyleSubtitle" id="Nz7-3n-bKa">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Nz7-3n-bKa" id="Z5w-tO-T9b">
-                                    <rect key="frame" x="0.0" y="0.0" width="383" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="384.5" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Db9-yT-Lc8">
@@ -233,10 +233,10 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="LeisureCell" textLabel="brW-U2-Ief" detailTextLabel="Tta-U5-kff" style="IBUITableViewCellStyleSubtitle" id="ely-r3-Mhi">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ely-r3-Mhi" id="MXd-8x-R2I">
-                                    <rect key="frame" x="0.0" y="0.0" width="383" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="384.5" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="brW-U2-Ief">
@@ -290,38 +290,6 @@
             </objects>
             <point key="canvasLocation" x="4903" y="76"/>
         </scene>
-        <!--날씨 정보-->
-        <scene sceneID="k4B-uH-ivA">
-            <objects>
-                <tableViewController id="ani-JD-6lv" customClass="WeatherTableViewController" customModule="TermProject" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="7Md-cD-g9l">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="dc9-5F-eGK">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dc9-5F-eGK" id="0ff-uK-vow">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="ani-JD-6lv" id="skv-Q7-3ZA"/>
-                            <outlet property="delegate" destination="ani-JD-6lv" id="CDj-5a-ub6"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="날씨 정보" id="fim-dd-HK5"/>
-                    <connections>
-                        <outlet property="weatherTableView" destination="7Md-cD-g9l" id="iKn-5x-jbS"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="BDc-es-XFd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5813.04347826087" y="780.13392857142856"/>
-        </scene>
         <!--Leisure-->
         <scene sceneID="6er-Nh-svf">
             <objects>
@@ -341,24 +309,46 @@
             </objects>
             <point key="canvasLocation" x="4903" y="-603"/>
         </scene>
-        <!--Weather-->
-        <scene sceneID="0A2-sp-Lro">
+        <!--날씨 정보-->
+        <scene sceneID="uSO-iH-h3o">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="O7m-N6-4QH" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Weather" image="weather-1" id="fYo-ah-v8g"/>
+                <viewController id="bXz-qn-x0V" customClass="WeatherViewController" customModule="TermProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ktc-Py-QUh">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="doC-8m-kmb">
+                                <rect key="frame" x="0.0" y="80" width="420" height="240"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="5C0-qk-CQo"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="날씨 정보" id="puv-5e-o1e"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sss-HB-Rbj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5813" y="781"/>
+        </scene>
+        <!--Weather-->
+        <scene sceneID="6an-CY-Kdl">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3Yi-mI-drT" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Weather" image="weather-1" id="M8Q-BO-sbV"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FXI-fv-TAN">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zTo-Gd-OIw">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="ani-JD-6lv" kind="relationship" relationship="rootViewController" id="2Ye-wZ-Iec"/>
+                        <segue destination="bXz-qn-x0V" kind="relationship" relationship="rootViewController" id="0W4-JJ-zF3"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JOe-DH-LOU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="quL-2W-fc9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4902.898550724638" y="779.46428571428567"/>
+            <point key="canvasLocation" x="4903" y="781"/>
         </scene>
     </scenes>
     <resources>
