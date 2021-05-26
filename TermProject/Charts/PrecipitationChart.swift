@@ -11,6 +11,9 @@ struct PrecipitationChart: View {
     var measurements: [TimeInfo]
     
     var body: some View {
+        Text("강수량")
+            .fontWeight(Font.Weight.heavy)
+            .scaleEffect(CGSize(width: 2, height: 1.5))
         HStack
         {
             ForEach(0..<measurementsCount)
@@ -19,10 +22,15 @@ struct PrecipitationChart: View {
                 VStack
                 {
                     Spacer()
+                    Text("\(self.measurements[index].pop!)" + "%")
+                        .font(.footnote)
+                        .rotationEffect(.degrees(-90))
+                        .offset(y: (self.measurements[index].pop! as NSString).floatValue < 40 ? 0 : 35)
+                        .zIndex(1)
                     Rectangle()
                         .fill(Color.blue)
-                        .frame(width: 20, height: self.measurements[index].pop!)
-                    Text(self.measurements[index].pop! + "%")
+                        .frame(width: 20, height: CGFloat(((self.measurements[index].pop!) as NSString).floatValue))
+                    Text(self.measurements[index].time! + "시")
                         .font(.footnote)
                         .frame(height: 20)
                 }

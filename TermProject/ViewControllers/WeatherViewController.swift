@@ -154,6 +154,7 @@ class WeatherViewController: UIViewController, XMLParserDelegate, UIScrollViewDe
             else if (dic["category"] as! NSMutableString).isEqual(to: "T3H")
             {
                 globalMeasurements[measurementsCount - 1].t3h = (dic["fcstValue"] as! NSString) as String
+                globalMeasurements[measurementsCount - 1].time?.removeLast(2)
             }
         }
     }
@@ -201,10 +202,25 @@ class WeatherViewController: UIViewController, XMLParserDelegate, UIScrollViewDe
         }
     }
     
+    func loadPage(_ page: Int)
+    {
+        if(page < 0 || page > pageControl.numberOfPages)
+        {
+            return
+        }
+    }
+    
+    func loadSwiftUIViews()
+    {
+        
+    }
+    
     func initScrollView()
     {
         pageControl.currentPage = 0
         pageControl.numberOfPages = 2
+        
+        loadSwiftUIViews()
     }
     
     override func viewDidLoad() {
@@ -212,7 +228,6 @@ class WeatherViewController: UIViewController, XMLParserDelegate, UIScrollViewDe
         beginParsing()
         setImage()
         initScrollView()
-        print(posts)
     }
     
     func initAreaPosition()
