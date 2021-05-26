@@ -9,6 +9,8 @@ import UIKit
 
 class WeatherViewController: UIViewController, XMLParserDelegate {
     @IBOutlet var imageView: UIImageView!
+    @IBOutlet weak var popLabel: UILabel!
+    @IBOutlet weak var tmxLabel: UILabel!
     
     var url: String?
     var sgguCd: String? //지역명
@@ -54,7 +56,7 @@ class WeatherViewController: UIViewController, XMLParserDelegate {
             }
             else
             {
-                //fcstTime = nil
+                fcstTime.append("")
             }
         }
         else if element.isEqual(to: "category")
@@ -71,13 +73,22 @@ class WeatherViewController: UIViewController, XMLParserDelegate {
             {
                 category.append(string)
             }
+            else if(string.contains("PTY"))
+            {
+                category.append(string)
+            }
             else
             {
-                return
+                category.append("")
             }
         }
         else if element.isEqual(to: "fcstValue")
         {
+            if(fcstTime.isEqual(to: "") || category.isEqual(to: ""))
+            {
+                categoryValue.append("")
+                return
+            }
             categoryValue.append(string)
         }
     }
@@ -85,17 +96,29 @@ class WeatherViewController: UIViewController, XMLParserDelegate {
     {
         if (elementName as NSString).isEqual(to: "item")
         {
-            if !fcstTime.isEqual(nil)
+            if !fcstTime.isEqual(to: "")
             {
                 elements.setObject(fcstTime, forKey: "fcstTime" as NSCopying)
             }
-            if !category.isEqual(nil)
+            else
+            {
+                return
+            }
+            if !category.isEqual(to: "")
             {
                 elements.setObject(category, forKey: "category" as NSCopying)
             }
-            if !categoryValue.isEqual(nil)
+            else
+            {
+                return
+            }
+            if !categoryValue.isEqual(to: "")
             {
                 elements.setObject(categoryValue, forKey: "fcstValue" as NSCopying)
+            }
+            else
+            {
+                return
             }
             
             posts.add(elements)
@@ -122,11 +145,51 @@ class WeatherViewController: UIViewController, XMLParserDelegate {
         self.date! += date
     }
     
+    func setImage()
+    {
+        for i in 0..<posts.count
+        {
+            let dic = posts[i] as! NSMutableDictionary
+            if (dic["category"] as! NSMutableString).isEqual(to: "POP")
+            {
+                popLabel.text = "강수 확률: " + ((dic["fcstValue"] as! NSString) as String) + "%"
+            }
+            else if (dic["category"] as! NSMutableString).isEqual(to: "PTY")
+            {
+                let fcstValue = ((dic["fcstValue"] as! NSString) as String)
+                switch fcstValue {
+                case "1":
+                    imageView.image = UIImage(named: "rain")
+                    break
+                case "3":
+                    imageView.image = UIImage(named: "snow")
+                default:
+                    break
+                }
+            }
+            else if (dic["category"] as! NSMutableString).isEqual(to: "SKY")
+            {
+                let fcstValue = ((dic["fcstValue"] as! NSString) as String)
+                switch fcstValue {
+                case "1":
+                    imageView.image = UIImage(named: "sunny")
+                    break
+                default:
+                    break
+                }
+            }
+            else if (dic["category"] as! NSMutableString).isEqual(to: "TMX")
+            {
+                tmxLabel.text = "낮 최고기온: " + ((dic["fcstValue"] as! NSString) as String) + "℃"
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         getDate()
         beginParsing()
-        print(posts)
+        setImage()
     }
     
     func initAreaPosition()
