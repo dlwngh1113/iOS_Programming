@@ -317,38 +317,74 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="doC-8m-kmb">
-                                <rect key="frame" x="0.0" y="150" width="420" height="350"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="doC-8m-kmb">
+                                <rect key="frame" x="0.0" y="150" width="414" height="350"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="350" id="LSI-j4-oJS"/>
+                                </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="강수 확률" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SyT-Q8-36B">
-                                <rect key="frame" x="80" y="576" width="189" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eVN-Nl-R2U">
+                                <rect key="frame" x="0.0" y="508" width="414" height="305"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <viewLayoutGuide key="contentLayoutGuide" id="MgZ-yq-9jh"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="hgz-wl-V77"/>
+                                <connections>
+                                    <outlet property="delegate" destination="bXz-qn-x0V" id="6jK-uM-7q7"/>
+                                </connections>
+                            </scrollView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="3cE-re-6eI">
+                                <rect key="frame" x="146" y="785" width="122" height="28"/>
+                            </pageControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="dateLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9lr-tU-4bQ">
+                                <rect key="frame" x="140" y="112" width="134" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="낮 최고기온" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PrW-4K-8IR">
-                                <rect key="frame" x="80" y="647" width="189" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hzZ-tu-oKG">
+                                <rect key="frame" x="0.0" y="508" width="414" height="269"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <segue destination="nEl-Ny-r3f" kind="embed" destinationCreationSelector="embedSwiftUIView:" id="Kvu-DU-N90"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="5C0-qk-CQo"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="doC-8m-kmb" firstAttribute="leading" secondItem="eVN-Nl-R2U" secondAttribute="leading" id="0rz-eX-JfX"/>
+                            <constraint firstAttribute="trailing" secondItem="doC-8m-kmb" secondAttribute="trailing" id="8zn-wn-Cw8"/>
+                            <constraint firstItem="eVN-Nl-R2U" firstAttribute="bottom" secondItem="5C0-qk-CQo" secondAttribute="bottom" id="92M-36-T1m"/>
+                            <constraint firstItem="eVN-Nl-R2U" firstAttribute="centerX" secondItem="3cE-re-6eI" secondAttribute="centerX" id="AOe-NV-48B"/>
+                            <constraint firstItem="doC-8m-kmb" firstAttribute="top" secondItem="9lr-tU-4bQ" secondAttribute="bottom" constant="8" symbolic="YES" id="DdB-WI-mqy"/>
+                            <constraint firstItem="eVN-Nl-R2U" firstAttribute="bottom" secondItem="3cE-re-6eI" secondAttribute="bottom" id="Pn5-sf-31F"/>
+                            <constraint firstItem="doC-8m-kmb" firstAttribute="leading" secondItem="ktc-Py-QUh" secondAttribute="leading" id="aSj-Cc-ojc"/>
+                            <constraint firstItem="9lr-tU-4bQ" firstAttribute="top" secondItem="5C0-qk-CQo" secondAttribute="top" constant="24" id="amC-0D-2Zo"/>
+                            <constraint firstItem="9lr-tU-4bQ" firstAttribute="centerX" secondItem="doC-8m-kmb" secondAttribute="centerX" id="faW-36-ZAA"/>
+                            <constraint firstItem="9lr-tU-4bQ" firstAttribute="leading" secondItem="5C0-qk-CQo" secondAttribute="leading" constant="140" id="m4c-IF-Wom"/>
+                            <constraint firstItem="doC-8m-kmb" firstAttribute="trailing" secondItem="eVN-Nl-R2U" secondAttribute="trailing" id="uru-gq-c4U"/>
+                            <constraint firstItem="eVN-Nl-R2U" firstAttribute="top" secondItem="doC-8m-kmb" secondAttribute="bottom" constant="8" symbolic="YES" id="vhP-tZ-za0"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="날씨 정보" id="puv-5e-o1e"/>
                     <connections>
+                        <outlet property="dateLabel" destination="9lr-tU-4bQ" id="hMb-wo-hMm"/>
                         <outlet property="imageView" destination="doC-8m-kmb" id="sb0-AY-7tD"/>
-                        <outlet property="popLabel" destination="SyT-Q8-36B" id="hks-Pq-VOS"/>
-                        <outlet property="tmxLabel" destination="PrW-4K-8IR" id="7mQ-tn-cDB"/>
+                        <outlet property="pageControl" destination="3cE-re-6eI" id="EZ8-ue-yQ5"/>
+                        <outlet property="scrollView" destination="eVN-Nl-R2U" id="ilF-FN-qHZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sss-HB-Rbj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5811.594202898551" y="780.80357142857144"/>
+        </scene>
+        <!--Hosting Controller-->
+        <scene sceneID="FI8-bD-CS8">
+            <objects>
+                <hostingController id="nEl-Ny-r3f" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I9S-1e-MID" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6603" y="781"/>
         </scene>
         <!--Weather-->
         <scene sceneID="6an-CY-Kdl">

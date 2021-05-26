@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import SwiftUI
 
-class WeatherViewController: UIViewController, XMLParserDelegate {
+class WeatherViewController: UIViewController, XMLParserDelegate, UIScrollViewDelegate {
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet var imageView: UIImageView!
-    @IBOutlet weak var popLabel: UILabel!
-    @IBOutlet weak var tmxLabel: UILabel!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var pageControl: UIPageControl!
     
     var url: String?
     var sgguCd: String? //지역명
@@ -27,7 +29,18 @@ class WeatherViewController: UIViewController, XMLParserDelegate {
     var fcstTime = NSMutableString()
     
     var date: String? = "&base_date=" //예보날짜
+    var labelDate: String{
+        let today = NSDate()
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateFormat = "yyyy/MM/dd"
+        let curDate = dateFormatter.string(from: today as Date)
+        return curDate
+    }
     var position: String? //지역의 xy
+    @IBSegueAction func embedSwiftUIView(_ coder: NSCoder) -> UIViewController? {
+        return UIHostingController(coder: coder, rootView: PrecipitationChart(measurements: globalMeasurements))
+    }
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI :String?,
                 qualifiedName qName: String?, attributes attributeDict: [String: String]) {
         element = elementName as NSString
@@ -50,14 +63,7 @@ class WeatherViewController: UIViewController, XMLParserDelegate {
     {
         if element.isEqual(to: "fcstTime")
         {
-            if(string.contains("1500"))
-            {
-                fcstTime.append(string)
-            }
-            else
-            {
-                fcstTime.append("")
-            }
+            fcstTime.append(string)
         }
         else if element.isEqual(to: "category")
         {
@@ -69,7 +75,7 @@ class WeatherViewController: UIViewController, XMLParserDelegate {
             {
                 category.append(string)
             }
-            else if(string.contains("TMX"))
+            else if(string.contains("T3H"))
             {
                 category.append(string)
             }
@@ -129,32 +135,46 @@ class WeatherViewController: UIViewController, XMLParserDelegate {
     {
         posts = []
         initAreaPosition()
-        url! += date! + position!
-        parser = XMLParser(contentsOf: (URL(string: url!))!)!
+        parser = XMLParser(contentsOf: (URL(string: url! + date! + getDate() + position!))!)!
         parser.delegate = self
         parser.parse()
     }
     
-    func getDate()
-    {
-        let today = NSDate()
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateFormat = "yyyyMMdd"
-        let date = dateFormatter.string(from: today as Date)
-        self.date! += date
-    }
-    
-    func setImage()
+    func setGlobalData()
     {
         for i in 0..<posts.count
         {
             let dic = posts[i] as! NSMutableDictionary
             if (dic["category"] as! NSMutableString).isEqual(to: "POP")
             {
-                popLabel.text = "강수 확률: " + ((dic["fcstValue"] as! NSString) as String) + "%"
+                globalMeasurements.append(TimeInfo(time: (dic["fcstTime"] as! NSString) as String,
+                                                         pop: (dic["fcstValue"] as! NSString) as String, t3h: nil))
+                measurementsCount += 1
             }
-            else if (dic["category"] as! NSMutableString).isEqual(to: "PTY")
+            else if (dic["category"] as! NSMutableString).isEqual(to: "T3H")
+            {
+                globalMeasurements[measurementsCount - 1].t3h = (dic["fcstValue"] as! NSString) as String
+            }
+        }
+    }
+    
+    func getDate() -> String
+    {
+        let today = NSDate()
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateFormat = "yyyyMMdd"
+        let date = dateFormatter.string(from: today as Date)
+        return date
+    }
+    
+    func setImage()
+    {
+        dateLabel.text = labelDate
+        for i in 0..<posts.count
+        {
+            let dic = posts[i] as! NSMutableDictionary
+            if (dic["category"] as! NSMutableString).isEqual(to: "PTY")
             {
                 let fcstValue = ((dic["fcstValue"] as! NSString) as String)
                 switch fcstValue {
@@ -178,18 +198,21 @@ class WeatherViewController: UIViewController, XMLParserDelegate {
                     break
                 }
             }
-            else if (dic["category"] as! NSMutableString).isEqual(to: "TMX")
-            {
-                tmxLabel.text = "낮 최고기온: " + ((dic["fcstValue"] as! NSString) as String) + "℃"
-            }
         }
+    }
+    
+    func initScrollView()
+    {
+        pageControl.currentPage = 0
+        pageControl.numberOfPages = 2
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getDate()
         beginParsing()
         setImage()
+        initScrollView()
+        print(posts)
     }
     
     func initAreaPosition()
