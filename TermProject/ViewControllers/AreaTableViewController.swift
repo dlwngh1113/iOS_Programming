@@ -148,4 +148,21 @@ class AreaTableViewController: UITableViewController, XMLParserDelegate {
         return cell
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let cell = sender as? UITableViewCell {
+            let indexPath = tableView.indexPath(for: cell)
+            if segue.identifier == "segueToAreaDetail"{
+                if let mapViewController = segue.destination as? AreaDetailViewController{
+                    let XPos = (posts.object(at: (indexPath?.row)!) as AnyObject).value(forKey: "REFINE_WGS84_LOGT") as! NSString as String
+                    let YPos = (posts.object(at: (indexPath?.row)!) as AnyObject).value(forKey: "REFINE_WGS84_LAT") as! NSString as String
+                    mapViewController.lat = (YPos as NSString).doubleValue
+                    mapViewController.lon = (XPos as NSString).doubleValue
+                    mapViewController.name = (posts.object(at: (indexPath?.row)!) as AnyObject).value(forKey: "NM_SM_NM") as! NSString as String
+                    mapViewController.telephone = (posts.object(at: (indexPath?.row)!) as AnyObject).value(forKey: "TELNO") as! NSString as String
+                    mapViewController.detailAddress = (posts.object(at: (indexPath?.row)!) as AnyObject).value(forKey: "SM_RE_ADDR") as! NSString as String
+                }
+            }
+        }
+    }
+    
 }

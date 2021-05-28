@@ -16,26 +16,18 @@ class LeisureDetailViewController: UIViewController, MKMapViewDelegate{
     @IBOutlet weak var detailAddressLabel: UILabel!
     @IBOutlet weak var map: MKMapView!
     
-    let regionRadius: CLLocationDistance = 1000
-    
-    var posts = NSMutableArray()
-    
+    let regionRadius: CLLocationDistance = 3000
+        
     var name : String?
+    var telephone : String?
+    var detailAddress : String?
     var lat : Double = 0.0//latitude
     var lon : Double = 0.0//longitude
     
     func initloaddate(){
-        for post in posts {
-            leisureNameLabel.text = (post as AnyObject).value(forKey: "SI_DESC") as! NSString as String
-            telephoneLabel.text = (post as AnyObject).value(forKey: "TELNO") as! NSString as String
-            detailAddressLabel.text = (post as AnyObject).value(forKey: "SM_RE_ADDR") as! NSString as String
-            let YPos = (post as AnyObject).value(forKey: "REFINE_WGS84_LAT") as! NSString as String
-            let XPos = (post as AnyObject).value(forKey: "REFINE_WGS84_LOGT") as! NSString as String
-            lat = (YPos as NSString).doubleValue
-            lon = (XPos as NSString).doubleValue
-        }
-        
-        name = leisureNameLabel.text!
+        leisureNameLabel.text! = name!
+        telephoneLabel.text! = telephone!
+        detailAddressLabel.text! = detailAddress!
     }
     
     func mapItem()->MKMapItem{
