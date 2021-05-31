@@ -14,6 +14,8 @@ class WeatherViewController: UIViewController, XMLParserDelegate, UIScrollViewDe
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     
+    var containerViews:[UIView] = []
+    
     var url: String?
     var sgguCd: String? //지역명
     
@@ -38,9 +40,7 @@ class WeatherViewController: UIViewController, XMLParserDelegate, UIScrollViewDe
         return curDate
     }
     var position: String? //지역의 xy
-    @IBSegueAction func embedSwiftUIView(_ coder: NSCoder) -> UIViewController? {
-        return UIHostingController(coder: coder, rootView: PrecipitationChart(measurements: globalMeasurements))
-    }
+    
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI :String?,
                 qualifiedName qName: String?, attributes attributeDict: [String: String]) {
         element = elementName as NSString
@@ -179,10 +179,10 @@ class WeatherViewController: UIViewController, XMLParserDelegate, UIScrollViewDe
             {
                 let fcstValue = ((dic["fcstValue"] as! NSString) as String)
                 switch fcstValue {
-                case "1":
+                case "1", "2", "4", "5", "6":
                     imageView.image = UIImage(named: "rain")
                     break
-                case "3":
+                case "3", "7":
                     imageView.image = UIImage(named: "snow")
                 default:
                     break
@@ -195,6 +195,12 @@ class WeatherViewController: UIViewController, XMLParserDelegate, UIScrollViewDe
                 case "1":
                     imageView.image = UIImage(named: "sunny")
                     break
+                case "3":
+                    imageView.image = UIImage(named: "cloud")
+                    break
+                case "4":
+                    imageView.image = UIImage(named: "manyCloud")
+                    break
                 default:
                     break
                 }
@@ -202,17 +208,68 @@ class WeatherViewController: UIViewController, XMLParserDelegate, UIScrollViewDe
         }
     }
     
-    func loadPage(_ page: Int)
+    func purgePage(_ page:Int)
     {
-        if(page < 0 || page > pageControl.numberOfPages)
+        if page < 0 || page >= containerViews.count
         {
             return
         }
+        
+        let viewcontrollers = self.children
+        for viewcontroller in viewcontrollers
+        {
+            viewcontroller.willMove(toParent: nil)
+            viewcontroller.view.removeFromSuperview()
+            viewcontroller.removeFromParent()
+        }
+    }
+    
+    func loadPage(_ page: Int)
+    {
+        if(page < 0 || page >= containerViews.count)
+        {
+            return
+        }
+        
+        var frame = scrollView.bounds
+        frame.origin.x = frame.size.width * CGFloat(page)
+        frame.origin.y = 0.0
+        frame.size.height -= 50
+        
+        containerViews[page].frame = frame
+        
+        var controller: UIViewController
+        if(page == 0)
+        {
+            controller = UIHostingController(rootView: PrecipitationChart(measurements: globalMeasurements))
+        }
+        else
+        {
+            controller = UIHostingController(rootView: TemperatureChart(measurements: globalMeasurements))
+        }
+        
+        addChild(controller)
+        containerViews[page].addSubview(controller.view)
+        
+        controller.view.frame = containerViews[page].bounds
+        controller.didMove(toParent: self)
+        
+        scrollView.addSubview(containerViews[page])
     }
     
     func loadSwiftUIViews()
     {
+        let pageWidth = scrollView.frame.width
+        let page = Int(floor((scrollView.contentOffset.x * 2.0 + pageWidth) / pageWidth / 2.0))
         
+        pageControl.currentPage = page
+        let lastPage = page + 1
+        
+        for index in 0..<lastPage + 1{
+            purgePage(index)
+        }
+        
+        loadPage(page)
     }
     
     func initScrollView()
@@ -220,6 +277,26 @@ class WeatherViewController: UIViewController, XMLParserDelegate, UIScrollViewDe
         pageControl.currentPage = 0
         pageControl.numberOfPages = 2
         
+        scrollView.delegate = self
+        
+        let pagesScrollViewSize = scrollView.frame.size
+        scrollView.contentSize = CGSize(width: pagesScrollViewSize.width * CGFloat(pageControl.numberOfPages), height: pagesScrollViewSize.height - 50)
+        
+        let precipitationView = UIView()
+        precipitationView.frame = scrollView.bounds
+        precipitationView.frame.origin.y = 0.0
+        precipitationView.frame.size.height -= 50
+        
+        let temperatureView = UIView()
+        temperatureView.frame = scrollView.bounds
+        temperatureView.frame.origin.y = 0.0
+        temperatureView.frame.size.height -= 50
+        
+        containerViews = [
+        precipitationView, temperatureView]
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         loadSwiftUIViews()
     }
     
@@ -228,6 +305,7 @@ class WeatherViewController: UIViewController, XMLParserDelegate, UIScrollViewDe
         beginParsing()
         setImage()
         initScrollView()
+        loadSwiftUIViews()
     }
     
     func initAreaPosition()

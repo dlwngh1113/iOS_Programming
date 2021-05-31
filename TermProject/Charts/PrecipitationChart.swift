@@ -11,8 +11,10 @@ struct PrecipitationChart: View {
     var measurements: [TimeInfo]
     
     var body: some View {
-        Text("강수량")
-            .fontWeight(Font.Weight.heavy)
+        Spacer()
+        Text("강수 확률")
+            .fontWeight(Font.Weight.bold)
+            .foregroundColor(Color.blue)
             .scaleEffect(CGSize(width: 2, height: 1.5))
         HStack
         {

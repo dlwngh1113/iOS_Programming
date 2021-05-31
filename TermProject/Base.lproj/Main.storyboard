@@ -325,15 +325,20 @@
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eVN-Nl-R2U">
                                 <rect key="frame" x="0.0" y="508" width="414" height="305"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <viewLayoutGuide key="contentLayoutGuide" id="MgZ-yq-9jh"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="hgz-wl-V77"/>
                                 <connections>
-                                    <outlet property="delegate" destination="bXz-qn-x0V" id="6jK-uM-7q7"/>
+                                    <outlet property="delegate" destination="bXz-qn-x0V" id="8Rn-0g-7ij"/>
                                 </connections>
                             </scrollView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="3cE-re-6eI">
                                 <rect key="frame" x="146" y="785" width="122" height="28"/>
+                                <color key="pageIndicatorTintColor" systemColor="opaqueSeparatorColor"/>
+                                <color key="currentPageIndicatorTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="PageChanged:" destination="bXz-qn-x0V" eventType="valueChanged" id="ucI-3j-Jnm"/>
+                                </connections>
                             </pageControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="dateLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9lr-tU-4bQ">
                                 <rect key="frame" x="140" y="112" width="134" height="30"/>
@@ -341,13 +346,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hzZ-tu-oKG">
-                                <rect key="frame" x="0.0" y="508" width="414" height="269"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <connections>
-                                    <segue destination="nEl-Ny-r3f" kind="embed" destinationCreationSelector="embedSwiftUIView:" id="Kvu-DU-N90"/>
-                                </connections>
-                            </containerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="5C0-qk-CQo"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -377,14 +375,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sss-HB-Rbj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5811.594202898551" y="780.80357142857144"/>
-        </scene>
-        <!--Hosting Controller-->
-        <scene sceneID="FI8-bD-CS8">
-            <objects>
-                <hostingController id="nEl-Ny-r3f" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="I9S-1e-MID" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6603" y="781"/>
         </scene>
         <!--Weather-->
         <scene sceneID="6an-CY-Kdl">

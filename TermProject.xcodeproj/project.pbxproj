@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A13B2DF426648E7E00E4653F /* manyCloud.png in Resources */ = {isa = PBXBuildFile; fileRef = A13B2DF326648E7E00E4653F /* manyCloud.png */; };
 		A13DCE17265A6CF700990837 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13DCE16265A6CF700990837 /* WeatherViewController.swift */; };
 		A180F6312653525800CFD0B5 /* InitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A180F6302653525800CFD0B5 /* InitViewController.swift */; };
 		A180F63526536C1300CFD0B5 /* LeisureTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A180F63426536C1300CFD0B5 /* LeisureTableViewController.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A13B2DF326648E7E00E4653F /* manyCloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manyCloud.png; sourceTree = "<group>"; };
 		A13DCE16265A6CF700990837 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		A180F6302653525800CFD0B5 /* InitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitViewController.swift; sourceTree = "<group>"; };
 		A180F63426536C1300CFD0B5 /* LeisureTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeisureTableViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				A1C2E65F2637FB5D00972E6E /* AppDelegate.swift */,
 				A1C2E6612637FB5D00972E6E /* SceneDelegate.swift */,
 				A1C2E6652637FB5D00972E6E /* Main.storyboard */,
+				A13B2DF326648E7E00E4653F /* manyCloud.png */,
 				A1C2E6682637FB5E00972E6E /* Assets.xcassets */,
 				A1C2E66A2637FB5E00972E6E /* LaunchScreen.storyboard */,
 				A1C2E66D2637FB5E00972E6E /* Info.plist */,
@@ -172,6 +175,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A13B2DF426648E7E00E4653F /* manyCloud.png in Resources */,
 				A1C2E66C2637FB5E00972E6E /* LaunchScreen.storyboard in Resources */,
 				A1C2E6692637FB5E00972E6E /* Assets.xcassets in Resources */,
 				A1C2E6672637FB5D00972E6E /* Main.storyboard in Resources */,
