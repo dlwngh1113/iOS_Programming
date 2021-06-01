@@ -29,7 +29,6 @@ class LeisureDetailViewController: UIViewController, MKMapViewDelegate{
         telephoneLabel.text! = telephone!
         detailAddressLabel.text! = detailAddress!
     }
-    
     @IBAction func searchInNaver(_ sender: Any) {
         let temp = name?.components(separatedBy: [" ", "\n"]).joined().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         guard let url = URL(string: "https://search.naver.com/search.naver?query=" + temp!),
@@ -41,13 +40,6 @@ class LeisureDetailViewController: UIViewController, MKMapViewDelegate{
         guard let url = URL(string: "https://www.google.com/search?q=" + temp!),
               UIApplication.shared.canOpenURL(url) else {return}
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
-    }
-    func mapItem()->MKMapItem{
-        let addressDict = [CNPostalAddressStreetKey: name!]
-        let placemark = MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: lat, longitude: lon), addressDictionary: addressDict)
-        let mapItem = MKMapItem(placemark: placemark)
-        mapItem.name = title
-        return mapItem
     }
     
     func centerMapOnLocation(location: CLLocation){
@@ -65,27 +57,34 @@ class LeisureDetailViewController: UIViewController, MKMapViewDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         map.delegate = self
         initloaddate()
         
         let initialLocation = CLLocation(latitude: lat, longitude: lon)
         centerMapOnLocation(location: initialLocation)
         // 핀설정
-        pinSetting()
+        //pinSetting()
+        
+        let place = Place(title: name!,
+                              locationName: detailAddress!,
+                              coordinate: CLLocationCoordinate2D(latitude: lat, longitude: lon))
+        
+        map.register(PlaceMarkerView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
+        
+        map.addAnnotation(place)
     }
     
-
-    func mapView(_ mapView: MKMapView, annotationView view:MKAnnotationView,
-                 calloutAccessoryControlTapped control: UIControl){
-        
-        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
-        
-        mapItem().openInMaps(launchOptions: launchOptions)
-    }
-
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+            let renderer = MKPolylineRenderer(overlay: overlay)
+            
+            renderer.strokeColor = UIColor.blue
+            renderer.lineWidth = 5.0
+            return renderer
+        }
+    
     func mapView(_ mapView: MKMapView, viewFor annotation:MKAnnotation)->MKAnnotationView?{
-        
+        guard let annotation = annotation as? Place else {return nil}
+
         let identifier = "marker"
         var view:MKMarkerAnnotationView
         if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView{
@@ -100,5 +99,12 @@ class LeisureDetailViewController: UIViewController, MKMapViewDelegate{
         }
         return view
     }
+    // MARK: - 길찾기
+    func mapView(_ mapView: MKMapView, annotationView view:MKAnnotationView,
+             calloutAccessoryControlTapped control: UIControl){
+        let location = view.annotation as! Place
+        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
     
+        location.mapItem().openInMaps(launchOptions: launchOptions)
+    }
 }
