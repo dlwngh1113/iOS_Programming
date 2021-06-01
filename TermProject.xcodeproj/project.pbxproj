@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A114419D265CF4170067A60E /* LeisureDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A114419C265CF4170067A60E /* LeisureDetailViewController.swift */; };
-		A11441A0265CF4250067A60E /* AreaDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A114419F265CF4250067A60E /* AreaDetailViewController.swift */; };
+		A13B2DF426648E7E00E4653F /* manyCloud.png in Resources */ = {isa = PBXBuildFile; fileRef = A13B2DF326648E7E00E4653F /* manyCloud.png */; };
 		A13DCE17265A6CF700990837 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13DCE16265A6CF700990837 /* WeatherViewController.swift */; };
 		A180F6312653525800CFD0B5 /* InitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A180F6302653525800CFD0B5 /* InitViewController.swift */; };
 		A180F63526536C1300CFD0B5 /* LeisureTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A180F63426536C1300CFD0B5 /* LeisureTableViewController.swift */; };
 		A180F63726536C7D00CFD0B5 /* AreaTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A180F63626536C7D00CFD0B5 /* AreaTableViewController.swift */; };
-		A180F639265372E200CFD0B5 /* Leisure.swift in Sources */ = {isa = PBXBuildFile; fileRef = A180F638265372E200CFD0B5 /* Leisure.swift */; };
+		A180F639265372E200CFD0B5 /* TimeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A180F638265372E200CFD0B5 /* TimeInfo.swift */; };
+		A19472BB265DE647001B29D1 /* PrecipitationChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19472BA265DE647001B29D1 /* PrecipitationChart.swift */; };
+		A19472BD265E47E5001B29D1 /* TemperatureChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19472BC265E47E5001B29D1 /* TemperatureChart.swift */; };
 		A1C2E6602637FB5D00972E6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C2E65F2637FB5D00972E6E /* AppDelegate.swift */; };
 		A1C2E6622637FB5D00972E6E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C2E6612637FB5D00972E6E /* SceneDelegate.swift */; };
 		A1C2E6642637FB5D00972E6E /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C2E6632637FB5D00972E6E /* PickerViewController.swift */; };
@@ -24,13 +25,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A114419C265CF4170067A60E /* LeisureDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeisureDetailViewController.swift; sourceTree = "<group>"; };
-		A114419F265CF4250067A60E /* AreaDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaDetailViewController.swift; sourceTree = "<group>"; };
+		A13B2DF326648E7E00E4653F /* manyCloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manyCloud.png; sourceTree = "<group>"; };
 		A13DCE16265A6CF700990837 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		A180F6302653525800CFD0B5 /* InitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitViewController.swift; sourceTree = "<group>"; };
 		A180F63426536C1300CFD0B5 /* LeisureTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeisureTableViewController.swift; sourceTree = "<group>"; };
 		A180F63626536C7D00CFD0B5 /* AreaTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaTableViewController.swift; sourceTree = "<group>"; };
-		A180F638265372E200CFD0B5 /* Leisure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leisure.swift; sourceTree = "<group>"; };
+		A180F638265372E200CFD0B5 /* TimeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInfo.swift; sourceTree = "<group>"; };
+		A19472BA265DE647001B29D1 /* PrecipitationChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrecipitationChart.swift; sourceTree = "<group>"; };
+		A19472BC265E47E5001B29D1 /* TemperatureChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureChart.swift; sourceTree = "<group>"; };
 		A1C2E65C2637FB5D00972E6E /* TermProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TermProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1C2E65F2637FB5D00972E6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1C2E6612637FB5D00972E6E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -79,9 +81,18 @@
 		A180F63A265372E800CFD0B5 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				A180F638265372E200CFD0B5 /* Leisure.swift */,
+				A180F638265372E200CFD0B5 /* TimeInfo.swift */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		A19472B9265DE62D001B29D1 /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				A19472BA265DE647001B29D1 /* PrecipitationChart.swift */,
+				A19472BC265E47E5001B29D1 /* TemperatureChart.swift */,
+			);
+			path = Charts;
 			sourceTree = "<group>";
 		};
 		A1C2E6532637FB5D00972E6E = {
@@ -106,9 +117,11 @@
 				A1C2E65F2637FB5D00972E6E /* AppDelegate.swift */,
 				A1C2E6612637FB5D00972E6E /* SceneDelegate.swift */,
 				A1C2E6652637FB5D00972E6E /* Main.storyboard */,
+				A13B2DF326648E7E00E4653F /* manyCloud.png */,
 				A1C2E6682637FB5E00972E6E /* Assets.xcassets */,
 				A1C2E66A2637FB5E00972E6E /* LaunchScreen.storyboard */,
 				A1C2E66D2637FB5E00972E6E /* Info.plist */,
+				A19472B9265DE62D001B29D1 /* Charts */,
 				A180F63A265372E800CFD0B5 /* Classes */,
 				A14C5A67264ED0320074C936 /* ViewControllers */,
 			);
@@ -172,6 +185,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A13B2DF426648E7E00E4653F /* manyCloud.png in Resources */,
 				A1C2E66C2637FB5E00972E6E /* LaunchScreen.storyboard in Resources */,
 				A1C2E6692637FB5E00972E6E /* Assets.xcassets in Resources */,
 				A1C2E6672637FB5D00972E6E /* Main.storyboard in Resources */,
@@ -190,10 +204,10 @@
 				A1C2E6642637FB5D00972E6E /* PickerViewController.swift in Sources */,
 				A180F63726536C7D00CFD0B5 /* AreaTableViewController.swift in Sources */,
 				A1C2E6602637FB5D00972E6E /* AppDelegate.swift in Sources */,
-				A114419D265CF4170067A60E /* LeisureDetailViewController.swift in Sources */,
+				A19472BD265E47E5001B29D1 /* TemperatureChart.swift in Sources */,
 				A180F63526536C1300CFD0B5 /* LeisureTableViewController.swift in Sources */,
-				A11441A0265CF4250067A60E /* AreaDetailViewController.swift in Sources */,
-				A180F639265372E200CFD0B5 /* Leisure.swift in Sources */,
+				A19472BB265DE647001B29D1 /* PrecipitationChart.swift in Sources */,
+				A180F639265372E200CFD0B5 /* TimeInfo.swift in Sources */,
 				A1F08D1A2657B0A800FDCF55 /* GlawTapBarController.swift in Sources */,
 				A1C2E6622637FB5D00972E6E /* SceneDelegate.swift in Sources */,
 			);

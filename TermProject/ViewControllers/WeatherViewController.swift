@@ -6,9 +6,15 @@
 //
 
 import UIKit
+import SwiftUI
 
-class WeatherViewController: UIViewController, XMLParserDelegate {
+class WeatherViewController: UIViewController, XMLParserDelegate, UIScrollViewDelegate {
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet var imageView: UIImageView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var pageControl: UIPageControl!
+    
+    var containerViews:[UIView] = []
     
     var url: String?
     var sgguCd: String? //지역명
@@ -20,91 +26,106 @@ class WeatherViewController: UIViewController, XMLParserDelegate {
     var elements = NSMutableDictionary()
     var element = NSString()
     
-    //var time: String? = "&base_time=1400" //예보시간 - 고정
+    var category = NSMutableString()
+    var categoryValue = NSMutableString()
+    var fcstTime = NSMutableString()
+    
     var date: String? = "&base_date=" //예보날짜
+    var labelDate: String{
+        let today = NSDate()
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateFormat = "yyyy/MM/dd"
+        let curDate = dateFormatter.string(from: today as Date)
+        return curDate
+    }
     var position: String? //지역의 xy
+    
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI :String?,
                 qualifiedName qName: String?, attributes attributeDict: [String: String]) {
         element = elementName as NSString
-        if (elementName as NSString).isEqual(to: "row")
+        if (elementName as NSString).isEqual(to: "item")
         {
             elements = NSMutableDictionary()
             elements = [:]
-//            SIGUN_NM = NSMutableString()
-//            SIGUN_NM = ""
-//            NM_SM_NM = NSMutableString()
-//            NM_SM_NM = ""
-//            SM_RE_ADDR = NSMutableString()
-//            SM_RE_ADDR = ""
-//            TELNO = NSMutableString()
-//            TELNO = ""
-//            //
-//            XPos = NSMutableString()
-//            XPos = ""
-//            YPos = NSMutableString()
-//            YPos = ""
+            
+            category = NSMutableString()
+            category = ""
+            
+            categoryValue = NSMutableString()
+            categoryValue = ""
+            
+            fcstTime = NSMutableString()
+            fcstTime = ""
         }
     }
     func parser(_ parser: XMLParser, foundCharacters string: String)
     {
-        if element.isEqual(to: "SIGUN_NM")
+        if element.isEqual(to: "fcstTime")
         {
-           // SIGUN_NM.append(string)
+            fcstTime.append(string)
         }
-        else if element.isEqual(to: "NM_SM_NM")
+        else if element.isEqual(to: "category")
         {
-           // NM_SM_NM.append(string)
+            if(string.contains("POP"))
+            {
+                category.append(string)
+            }
+            else if(string.contains("SKY"))
+            {
+                category.append(string)
+            }
+            else if(string.contains("T3H"))
+            {
+                category.append(string)
+            }
+            else if(string.contains("PTY"))
+            {
+                category.append(string)
+            }
+            else
+            {
+                category.append("")
+            }
         }
-        else if element.isEqual(to: "SM_RE_ADDR")
+        else if element.isEqual(to: "fcstValue")
         {
-           // SM_RE_ADDR.append(string)
-        }
-        else if element.isEqual(to: "TELNO")
-        {
-            //TELNO.append(string)
-        }
-        
-        else if element.isEqual(to: "REFINE_WGS84_LAT")
-        {
-            //XPos.append(string)
-        }
-        else if element.isEqual(to: "REFINE_WGS84_LOGT")
-        {
-            //YPos.append(string)
+            if(fcstTime.isEqual(to: "") || category.isEqual(to: ""))
+            {
+                categoryValue.append("")
+                return
+            }
+            categoryValue.append(string)
         }
     }
     func parser(_ parser:XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?)
     {
-        if (elementName as NSString).isEqual(to: "row")
+        if (elementName as NSString).isEqual(to: "item")
         {
-//            if !SIGUN_NM.isEqual(nil)
-//            {
-//                if(!SIGUN_NM.contains(sgguCd!)){
-//                    return
-//                }
-//                elements.setObject(SIGUN_NM, forKey: "SIGUN_NM" as NSCopying)
-//            }
-//            if !NM_SM_NM.isEqual(nil)
-//            {
-//                elements.setObject(NM_SM_NM, forKey: "NM_SM_NM" as NSCopying)
-//            }
-//            if !SM_RE_ADDR.isEqual(nil)
-//            {
-//                elements.setObject(SM_RE_ADDR, forKey: "SM_RE_ADDR" as NSCopying)
-//            }
-//            if !TELNO.isEqual(nil)
-//            {
-//                elements.setObject(TELNO, forKey: "TELNO" as NSCopying)
-//            }
-//
-//            if !XPos.isEqual(nil)
-//            {
-//                elements.setObject(XPos, forKey: "REFINE_WGS84_LAT" as NSCopying)
-//            }
-//            if !YPos.isEqual(nil)
-//            {
-//                elements.setObject(YPos, forKey: "REFINE_WGS84_LOGT" as NSCopying)
-//            }
+            if !fcstTime.isEqual(to: "")
+            {
+                elements.setObject(fcstTime, forKey: "fcstTime" as NSCopying)
+            }
+            else
+            {
+                return
+            }
+            if !category.isEqual(to: "")
+            {
+                elements.setObject(category, forKey: "category" as NSCopying)
+            }
+            else
+            {
+                return
+            }
+            if !categoryValue.isEqual(to: "")
+            {
+                elements.setObject(categoryValue, forKey: "fcstValue" as NSCopying)
+            }
+            else
+            {
+                return
+            }
             
             posts.add(elements)
         }
@@ -114,26 +135,177 @@ class WeatherViewController: UIViewController, XMLParserDelegate {
     {
         posts = []
         initAreaPosition()
-        url! += date! + position!
-        parser = XMLParser(contentsOf: (URL(string: url!))!)!
+        parser = XMLParser(contentsOf: (URL(string: url! + date! + getDate() + position!))!)!
         parser.delegate = self
         parser.parse()
     }
     
-    func getDate()
+    func setGlobalData()
+    {
+        for i in 0..<posts.count
+        {
+            let dic = posts[i] as! NSMutableDictionary
+            if (dic["category"] as! NSMutableString).isEqual(to: "POP")
+            {
+                globalMeasurements.append(TimeInfo(time: (dic["fcstTime"] as! NSString) as String,
+                                                         pop: (dic["fcstValue"] as! NSString) as String, t3h: nil))
+                measurementsCount += 1
+            }
+            else if (dic["category"] as! NSMutableString).isEqual(to: "T3H")
+            {
+                globalMeasurements[measurementsCount - 1].t3h = (dic["fcstValue"] as! NSString) as String
+                globalMeasurements[measurementsCount - 1].time?.removeLast(2)
+            }
+        }
+    }
+    
+    func getDate() -> String
     {
         let today = NSDate()
         let dateFormatter = DateFormatter()
         
         dateFormatter.dateFormat = "yyyyMMdd"
         let date = dateFormatter.string(from: today as Date)
-        self.date! += date
+        return date
+    }
+    
+    func setImage()
+    {
+        dateLabel.text = labelDate
+        for i in 0..<posts.count
+        {
+            let dic = posts[i] as! NSMutableDictionary
+            if (dic["category"] as! NSMutableString).isEqual(to: "PTY")
+            {
+                let fcstValue = ((dic["fcstValue"] as! NSString) as String)
+                switch fcstValue {
+                case "1", "2", "4", "5", "6":
+                    imageView.image = UIImage(named: "rain")
+                    break
+                case "3", "7":
+                    imageView.image = UIImage(named: "snow")
+                default:
+                    break
+                }
+            }
+            else if (dic["category"] as! NSMutableString).isEqual(to: "SKY")
+            {
+                let fcstValue = ((dic["fcstValue"] as! NSString) as String)
+                switch fcstValue {
+                case "1":
+                    imageView.image = UIImage(named: "sunny")
+                    break
+                case "3":
+                    imageView.image = UIImage(named: "cloud")
+                    break
+                case "4":
+                    imageView.image = UIImage(named: "manyCloud")
+                    break
+                default:
+                    break
+                }
+            }
+        }
+    }
+    
+    func purgePage(_ page:Int)
+    {
+        if page < 0 || page >= containerViews.count
+        {
+            return
+        }
+        
+        let viewcontrollers = self.children
+        for viewcontroller in viewcontrollers
+        {
+            viewcontroller.willMove(toParent: nil)
+            viewcontroller.view.removeFromSuperview()
+            viewcontroller.removeFromParent()
+        }
+    }
+    
+    func loadPage(_ page: Int)
+    {
+        if(page < 0 || page >= containerViews.count)
+        {
+            return
+        }
+        
+        var frame = scrollView.bounds
+        frame.origin.x = frame.size.width * CGFloat(page)
+        frame.origin.y = 0.0
+        frame.size.height -= 50
+        
+        containerViews[page].frame = frame
+        
+        var controller: UIViewController
+        if(page == 0)
+        {
+            controller = UIHostingController(rootView: PrecipitationChart(measurements: globalMeasurements))
+        }
+        else
+        {
+            controller = UIHostingController(rootView: TemperatureChart(measurements: globalMeasurements))
+        }
+        
+        addChild(controller)
+        containerViews[page].addSubview(controller.view)
+        
+        controller.view.frame = containerViews[page].bounds
+        controller.didMove(toParent: self)
+        
+        scrollView.addSubview(containerViews[page])
+    }
+    
+    func loadSwiftUIViews()
+    {
+        let pageWidth = scrollView.frame.width
+        let page = Int(floor((scrollView.contentOffset.x * 2.0 + pageWidth) / pageWidth / 2.0))
+        
+        pageControl.currentPage = page
+        let lastPage = page + 1
+        
+        for index in 0..<lastPage + 1{
+            purgePage(index)
+        }
+        
+        loadPage(page)
+    }
+    
+    func initScrollView()
+    {
+        pageControl.currentPage = 0
+        pageControl.numberOfPages = 2
+        
+        scrollView.delegate = self
+        
+        let pagesScrollViewSize = scrollView.frame.size
+        scrollView.contentSize = CGSize(width: pagesScrollViewSize.width * CGFloat(pageControl.numberOfPages), height: pagesScrollViewSize.height - 50)
+        
+        let precipitationView = UIView()
+        precipitationView.frame = scrollView.bounds
+        precipitationView.frame.origin.y = 0.0
+        precipitationView.frame.size.height -= 50
+        
+        let temperatureView = UIView()
+        temperatureView.frame = scrollView.bounds
+        temperatureView.frame.origin.y = 0.0
+        temperatureView.frame.size.height -= 50
+        
+        containerViews = [
+        precipitationView, temperatureView]
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        loadSwiftUIViews()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getDate()
         beginParsing()
+        setImage()
+        initScrollView()
+        loadSwiftUIViews()
     }
     
     func initAreaPosition()

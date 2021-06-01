@@ -44,6 +44,8 @@ class GlawTapBarController: UITabBarController {
             {
                 weatherViewController.url = weatherUIL
                 weatherViewController.sgguCd = sgguCd
+                weatherViewController.beginParsing()
+                weatherViewController.setGlobalData()
             }
         }
     }
