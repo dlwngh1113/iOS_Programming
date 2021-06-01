@@ -1,0 +1,104 @@
+//
+//  LeisureDetailViewController.swift
+//  TermProject
+//
+//  Created by kpugame on 2021/05/25.
+//
+
+import UIKit
+import MapKit
+import Contacts
+
+class LeisureDetailViewController: UIViewController, MKMapViewDelegate{
+
+    @IBOutlet weak var leisureNameLabel: UILabel!
+    @IBOutlet weak var telephoneLabel: UILabel!
+    @IBOutlet weak var detailAddressLabel: UILabel!
+    @IBOutlet weak var map: MKMapView!
+    
+    let regionRadius: CLLocationDistance = 3000
+        
+    var name : String?
+    var telephone : String?
+    var detailAddress : String?
+    var lat : Double = 0.0//latitude
+    var lon : Double = 0.0//longitude
+    
+    func initloaddate(){
+        leisureNameLabel.text! = name!
+        telephoneLabel.text! = telephone!
+        detailAddressLabel.text! = detailAddress!
+    }
+    
+    @IBAction func searchInNaver(_ sender: Any) {
+        let temp = name?.components(separatedBy: [" ", "\n"]).joined().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        guard let url = URL(string: "https://search.naver.com/search.naver?query=" + temp!),
+              UIApplication.shared.canOpenURL(url) else {return}
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
+    @IBAction func searchInGoogle(_ sender: Any) {
+        let temp = name?.components(separatedBy: [" ", "\n"]).joined().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        guard let url = URL(string: "https://www.google.com/search?q=" + temp!),
+              UIApplication.shared.canOpenURL(url) else {return}
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
+    func mapItem()->MKMapItem{
+        let addressDict = [CNPostalAddressStreetKey: name!]
+        let placemark = MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: lat, longitude: lon), addressDictionary: addressDict)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = title
+        return mapItem
+    }
+    
+    func centerMapOnLocation(location: CLLocation){
+        let coordinateRegion = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
+        map.setRegion(coordinateRegion, animated: true)
+    }
+    
+    func pinSetting(){
+        let point = MKPointAnnotation()
+        point.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+        point.title = leisureNameLabel.text
+        point.subtitle = detailAddressLabel.text
+        map.addAnnotation(point)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        map.delegate = self
+        initloaddate()
+        
+        let initialLocation = CLLocation(latitude: lat, longitude: lon)
+        centerMapOnLocation(location: initialLocation)
+        // 핀설정
+        pinSetting()
+    }
+    
+
+    func mapView(_ mapView: MKMapView, annotationView view:MKAnnotationView,
+                 calloutAccessoryControlTapped control: UIControl){
+        
+        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+        
+        mapItem().openInMaps(launchOptions: launchOptions)
+    }
+
+    func mapView(_ mapView: MKMapView, viewFor annotation:MKAnnotation)->MKAnnotationView?{
+        
+        let identifier = "marker"
+        var view:MKMarkerAnnotationView
+        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView{
+            dequeuedView.annotation = annotation
+            view = dequeuedView
+        }
+        else{
+            view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            view.canShowCallout = true
+            view.calloutOffset = CGPoint(x: -5, y: 5)
+            view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        }
+        return view
+    }
+    
+}

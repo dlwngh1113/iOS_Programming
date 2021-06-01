@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A12DB9C42665DBBF00A14434 /* AreaDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12DB9C22665DBBF00A14434 /* AreaDetailViewController.swift */; };
+		A12DB9C52665DBBF00A14434 /* LeisureDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12DB9C32665DBBF00A14434 /* LeisureDetailViewController.swift */; };
 		A13B2DF426648E7E00E4653F /* manyCloud.png in Resources */ = {isa = PBXBuildFile; fileRef = A13B2DF326648E7E00E4653F /* manyCloud.png */; };
 		A13DCE17265A6CF700990837 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13DCE16265A6CF700990837 /* WeatherViewController.swift */; };
 		A180F6312653525800CFD0B5 /* InitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A180F6302653525800CFD0B5 /* InitViewController.swift */; };
@@ -25,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A12DB9C22665DBBF00A14434 /* AreaDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AreaDetailViewController.swift; sourceTree = "<group>"; };
+		A12DB9C32665DBBF00A14434 /* LeisureDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeisureDetailViewController.swift; sourceTree = "<group>"; };
 		A13B2DF326648E7E00E4653F /* manyCloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manyCloud.png; sourceTree = "<group>"; };
 		A13DCE16265A6CF700990837 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		A180F6302653525800CFD0B5 /* InitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitViewController.swift; sourceTree = "<group>"; };
@@ -58,8 +62,6 @@
 		A114419A265CF3BA0067A60E /* DetailView */ = {
 			isa = PBXGroup;
 			children = (
-				A114419C265CF4170067A60E /* LeisureDetailViewController.swift */,
-				A114419F265CF4250067A60E /* AreaDetailViewController.swift */,
 			);
 			path = DetailView;
 			sourceTree = "<group>";
@@ -74,6 +76,8 @@
 				A180F63426536C1300CFD0B5 /* LeisureTableViewController.swift */,
 				A180F63626536C7D00CFD0B5 /* AreaTableViewController.swift */,
 				A13DCE16265A6CF700990837 /* WeatherViewController.swift */,
+				A12DB9C22665DBBF00A14434 /* AreaDetailViewController.swift */,
+				A12DB9C32665DBBF00A14434 /* LeisureDetailViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -199,6 +203,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A12DB9C52665DBBF00A14434 /* LeisureDetailViewController.swift in Sources */,
+				A12DB9C42665DBBF00A14434 /* AreaDetailViewController.swift in Sources */,
 				A180F6312653525800CFD0B5 /* InitViewController.swift in Sources */,
 				A13DCE17265A6CF700990837 /* WeatherViewController.swift in Sources */,
 				A1C2E6642637FB5D00972E6E /* PickerViewController.swift in Sources */,
