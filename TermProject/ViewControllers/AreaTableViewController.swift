@@ -10,6 +10,8 @@ import UIKit
 class AreaTableViewController: UITableViewController, XMLParserDelegate {
 
     @IBOutlet var areaTableView: UITableView!
+    var audioController: AudioController!
+
     var url: String?
     var sgguCd: String? //지역명
     
@@ -126,6 +128,10 @@ class AreaTableViewController: UITableViewController, XMLParserDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         beginParsing()
+        
+        audioController = AudioController()
+        audioController.preloadAudioEffects(audioFileNames: AudioEffectFiles)
+        audioController.playerEffect(name: SoundPaging)
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -152,6 +158,8 @@ class AreaTableViewController: UITableViewController, XMLParserDelegate {
         if let cell = sender as? UITableViewCell {
             let indexPath = tableView.indexPath(for: cell)
             if segue.identifier == "segueToAreaDetail"{
+                audioController.playerEffect(name: SoundButton)
+                
                 if let mapViewController = segue.destination as? AreaDetailViewController{
                     let XPos = (posts.object(at: (indexPath?.row)!) as AnyObject).value(forKey: "REFINE_WGS84_LOGT") as! NSString as String
                     let YPos = (posts.object(at: (indexPath?.row)!) as AnyObject).value(forKey: "REFINE_WGS84_LAT") as! NSString as String

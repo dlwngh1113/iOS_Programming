@@ -13,7 +13,8 @@ class WeatherViewController: UIViewController, XMLParserDelegate, UIScrollViewDe
     @IBOutlet var imageView: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
-    
+    var audioController: AudioController!
+
     var containerViews:[UIView] = []
     
     var url: String?
@@ -306,6 +307,10 @@ class WeatherViewController: UIViewController, XMLParserDelegate, UIScrollViewDe
         setImage()
         initScrollView()
         loadSwiftUIViews()
+        
+        audioController = AudioController()
+        audioController.preloadAudioEffects(audioFileNames: AudioEffectFiles)
+        audioController.playerEffect(name: SoundPaging)
     }
     
     func initAreaPosition()

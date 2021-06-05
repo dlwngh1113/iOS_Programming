@@ -15,7 +15,8 @@ class LeisureDetailViewController: UIViewController, MKMapViewDelegate{
     @IBOutlet weak var telephoneLabel: UILabel!
     @IBOutlet weak var detailAddressLabel: UILabel!
     @IBOutlet weak var map: MKMapView!
-    
+    var audioController: AudioController!
+
     let regionRadius: CLLocationDistance = 3000
         
     var name : String?
@@ -57,6 +58,11 @@ class LeisureDetailViewController: UIViewController, MKMapViewDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        audioController = AudioController()
+        audioController.preloadAudioEffects(audioFileNames: AudioEffectFiles)
+        audioController.playerEffect(name: SoundPaging)
+        
         map.delegate = self
         initloaddate()
         

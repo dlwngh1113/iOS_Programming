@@ -11,10 +11,18 @@ class InitViewController: UIViewController {
 
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var signatureImageView: UIImageView!
+    
+    var audioController: AudioController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         signatureImageView.image = UIImage(named: "signature.png")
         // Do any additional setup after loading the view.
+        
+        audioController = AudioController()
+        audioController.preloadAudioEffects(audioFileNames: AudioEffectFiles)
+        
+        audioController.playerEffect(name: SoundBackground, repeating: true)
     }
     
 

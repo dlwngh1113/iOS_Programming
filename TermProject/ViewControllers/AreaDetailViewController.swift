@@ -16,7 +16,8 @@ class AreaDetailViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var telephoneLabel: UILabel!
     @IBOutlet weak var detailAddressLabel: UILabel!
     @IBOutlet weak var map: MKMapView!
-    
+    var audioController: AudioController!
+
     let regionRadius: CLLocationDistance = 1000
     
     var name : String?
@@ -32,12 +33,14 @@ class AreaDetailViewController: UIViewController, MKMapViewDelegate {
     }
     
     @IBAction func searchInNaver(_ sender: Any) {
+        audioController.playerEffect(name: SoundButton)
         let temp = name?.components(separatedBy: [" ", "\n"]).joined().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         guard let url = URL(string: "https://search.naver.com/search.naver?query=" + temp!),
               UIApplication.shared.canOpenURL(url) else {return}
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     @IBAction func searchInGoogle(_ sender: Any) {
+        audioController.playerEffect(name: SoundButton)
         let temp = name?.components(separatedBy: [" ", "\n"]).joined().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         guard let url = URL(string: "https://www.google.com/search?q=" + temp!),
               UIApplication.shared.canOpenURL(url) else {return}
@@ -59,6 +62,11 @@ class AreaDetailViewController: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        audioController = AudioController()
+        audioController.preloadAudioEffects(audioFileNames: AudioEffectFiles)
+        audioController.playerEffect(name: SoundPaging)
+        
         map.delegate = self
         initloaddate()
         

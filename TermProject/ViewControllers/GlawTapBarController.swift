@@ -13,6 +13,7 @@ class GlawTapBarController: UITabBarController {
     var areaURL:String?
     var weatherUIL: String?
     var sgguCd: String?
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
@@ -24,8 +25,10 @@ class GlawTapBarController: UITabBarController {
         {
             if let leisureViewController = navController.topViewController as? LeisureTableViewController
             {
+
                 leisureViewController.url = leisureURL
                 leisureViewController.sgguCd = sgguCd
+                
             }
         }
         

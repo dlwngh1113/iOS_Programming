@@ -10,9 +10,10 @@ import UIKit
 class LeisureTableViewController: UITableViewController, XMLParserDelegate {
 
     @IBOutlet var leisureTableView: UITableView!
-    
     @IBOutlet weak var searchFooter: SearchFooter!
     let searchController = UISearchController(searchResultsController: nil)
+    
+    var audioController: AudioController!
     
     var filteredElements = NSMutableArray() // 필터링된 데이터들
     
@@ -144,6 +145,10 @@ class LeisureTableViewController: UITableViewController, XMLParserDelegate {
         
         //setup
         tableView.tableFooterView = searchFooter
+        
+        audioController = AudioController()
+        audioController.preloadAudioEffects(audioFileNames: AudioEffectFiles)
+        audioController.playerEffect(name: SoundPaging)
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -183,6 +188,7 @@ class LeisureTableViewController: UITableViewController, XMLParserDelegate {
             let indexPath = tableView.indexPath(for: cell)
             if segue.identifier == "segueToLeisureDetail"{
                 if let mapViewController = segue.destination as? LeisureDetailViewController{
+                    audioController.playerEffect(name: SoundButton)
                     
                     if isFiltering(){
                         let XPos = (filteredElements.object(at: (indexPath?.row)!) as AnyObject).value(forKey: "REFINE_WGS84_LOGT") as! NSString as String

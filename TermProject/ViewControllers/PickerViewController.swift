@@ -15,6 +15,7 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     @IBOutlet weak var myTextView: UITextView!
     private let audioEngine = AVAudioEngine()
     
+    var audioController: AudioController!
     private let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "ko-KR"))!
     
     private var speechRecognitionRequest: SFSpeechAudioBufferRecognitionRequest?
@@ -153,6 +154,12 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         self.pickerView.delegate = self
         self.pickerView.dataSource = self
         authorizeSR()
+        
+        audioController = AudioController()
+        audioController.preloadAudioEffects(audioFileNames: AudioEffectFiles)
+        
+        audioController.playerEffect(name: SoundButton)
+        audioController.playerEffect(name: SoundPaging)
     }
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
