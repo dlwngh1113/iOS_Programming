@@ -85,6 +85,9 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         
         audioEngine.prepare()
         try audioEngine.start()
+        
+        let explore = TouchEffectView(frame: CGRect(x: self.transcribeButton.center.x, y: self.transcribeButton.center.y, width: 10, height: 10))
+        self.view.addSubview(explore)
     }
     
     @IBAction func stopTranscribing(_ sender: Any) {
@@ -106,6 +109,10 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         
         //지역명
         sgguCd = self.myTextView.text
+        
+        let explore = TouchEffectView(frame: CGRect(x: self.stopButton.center.x, y: self.stopButton.center.y, width: 10, height: 10))
+        self.view.addSubview(explore)
+        
     }
     
     @IBAction func doneToPickerViewContorller(segue: UIStoryboardSegue)

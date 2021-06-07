@@ -45,6 +45,7 @@ class GlawTapBarController: UITabBarController {
         {
             if let weatherViewController = navController.topViewController as? WeatherViewController
             {
+                globalMeasurements = []
                 weatherViewController.url = weatherUIL
                 weatherViewController.sgguCd = sgguCd
                 weatherViewController.beginParsing()

@@ -143,6 +143,7 @@ class WeatherViewController: UIViewController, XMLParserDelegate, UIScrollViewDe
     
     func setGlobalData()
     {
+        measurementsCount = 0
         for i in 0..<posts.count
         {
             let dic = posts[i] as! NSMutableDictionary
@@ -206,6 +207,14 @@ class WeatherViewController: UIViewController, XMLParserDelegate, UIScrollViewDe
                     break
                 }
             }
+            imageView.center = CGPoint(x: 100, y: 30)
+            UIView.animate(withDuration: 0.5,
+                           delay: 0.0,
+                           options: UIView.AnimationOptions.curveEaseInOut,
+                           animations: {
+                            self.imageView.transform = CGAffineTransform(rotationAngle: 3.14)
+                           },
+                           completion: nil)
         }
     }
     
